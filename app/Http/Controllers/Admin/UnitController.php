@@ -44,6 +44,24 @@ class UnitController extends Controller
         return view('backend.admin.unit.create', compact('view', 'courses', 'selectedCourse'));
     }
 
+    public function checkin($slug)
+    {
+        //
+
+        $view = '';
+        $courses = \DB::table('courses')->lists('name', 'id');
+        $selectedCourse = \DB::table('course_units')->pluck('course_id');
+        $unitName = $slug;
+        $unitID = Unit::where('slug', $unitName)->value('id');
+
+        $firstName = User::where('course_id', $unitID)->value('first_name');
+        $lastName = User::where('course_id', $unitID)->value('last_name');
+
+        $lecturerName = $firstName." ".$lastName;
+
+        return view('backend.admin.unit.checkin', compact('view', 'courses', 'selectedCourse', 'unitName', 'lecturerName'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -66,6 +84,7 @@ class UnitController extends Controller
 
             $unit                        = new Unit;  
             $unit->name                  = $input['name'];
+            $unit->slug                  = str_slug($unit->name, "-");
             $unit->course_id             = $input['course'];
             $unit->status                = "CUSTOM";
             $unit->active                = 1;

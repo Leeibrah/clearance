@@ -35,6 +35,7 @@
 							<th>Course</th>
 							<th>Unit</th>							
 							<th>Status</th>
+							<th>Checkin</th>
 						</tr>
 						</thead>
 						
@@ -54,7 +55,9 @@
 											Inactive
 										@endif
 									</td>
-									
+									<td>
+									<a href="{!! route('admin.unit.checkin', $unit->slug) !!}">Enter</a>
+									</td>
 								</tr>
 							@endforeach
                         @endif

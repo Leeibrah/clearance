@@ -26,7 +26,13 @@ class AdminController extends Controller
 
         $users = User::all();
 
-        return view('backend.admin.dashboard', compact('users'));
+        $studentCount = User::whereHas('roles', function($q){
+            $q->where('name', 'student');
+        })->count();
+
+        $courseCount = Course::all()->count();
+
+        return view('backend.admin.dashboard', compact('users', 'studentCount', 'courseCount'));
     }
 
     public function finances()

@@ -18,7 +18,7 @@ use Request;
 
 use \Milon\Barcode\DNS1D;
 
-class UserController extends Controller
+class LecturerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,16 +27,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        // $lecturers = User::all();
+        $lecturers = User::whereHas('roles', function($q){
+            $q->where('name', 'lecturer');
+        })->get();
 
-        return view('backend.admin.users.index', compact('users'));
-    }
-
-    public function unverified()
-    {
-        $users = User::where('phone_verified', 0)->get();
-
-        return view('backend.admin.users.index', compact('users'));
+        return view('backend.admin.lecturer.index', compact('lecturers'));
     }
 
     /**
@@ -48,9 +44,9 @@ class UserController extends Controller
     {
         $view = '';
         $userRoles = \DB::table('roles')->where('id', '!=', [1])->orderBy('name', 'asc')->lists('name', 'id');
-        $courses = \DB::table('courses')->orderBy('name', 'asc')->lists('name', 'id');
+        $courseUnits = \DB::table('course_units')->orderBy('name', 'asc')->lists('name', 'id');
 
-        return view('backend.admin.users.create', compact('view', 'userRoles', 'courses'));
+        return view('backend.admin.lecturer.create', compact('view', 'userRoles', 'courseUnits'));
     }
 
     /**
@@ -68,21 +64,13 @@ class UserController extends Controller
         $validator = Validator::make($input, User::$rules);
 
         if ($validator->fails()) {
-            return redirect()->route('users.create')
+            return redirect()->route('lecturer.create')
                 ->withErrors($validator);
         } 
 
         if(User::where('email', '=', $input['email'])->exists()) {
 
             $message = "Sorry! The Email already exist. Please Login or use another email address.";
-            return redirect()->back()
-                ->withErrors($message)
-                ->withInput();
-        }
-
-        if(User::where('student_number', '=', $input['student_number'])->exists()) {
-
-            $message = "Sorry! The Student Number already exist in our Records. Please Login to your Account";
             return redirect()->back()
                 ->withErrors($message)
                 ->withInput();
@@ -96,17 +84,14 @@ class UserController extends Controller
                 ->withErrors($message)
                 ->withInput();
         }else{
-            // store
-
-            // dd('sjd');
+ 
             $user                           = new User;
             $user->first_name               = $input['first_name'];
             $user->last_name                = $input['last_name'];
             $user->phone                    = $phoneNumber;
             $user->email                    = $input['email'];
-            $user->student_number           = $input['student_number'];
-            $user->valid_from               = $input['valid_from'];
-            $user->valid_to                 = $input['valid_to'];
+            $user->student_number           = NULL;
+
 
             $key = \Config::get('app.key');
             $generatedCode = hash_hmac('sha256', str_random(40), $key);
@@ -114,13 +99,13 @@ class UserController extends Controller
             $user->course_id                = $input['course_id'];
             $user->save();
 
-            $roleName = Role::where('id', $input['role'])->value('name');
+            
 
-            $role = Role::whereName($roleName)->first();
+            $role = Role::whereName("lecturer")->first();
             $user->assignRole($role); 
 
-            return redirect()->route('admin.users.index')
-            ->with('message', 'Successfully created user!');
+            return redirect()->route('admin.lecturer.index')
+            ->with('message', 'Successfully created Lecturer!');
         }
     }
 
@@ -137,36 +122,15 @@ class UserController extends Controller
         $crb = CrbIdentityVerification::where('user_id', $user->id)->first();
         // $creditInfo = CreditInfo::where('user_id', $employee->user_id)->first();
 
-        return view('backend.admin.users.show', compact('user', 'crb'));
+        return view('backend.admin.lecturer.show', compact('user', 'crb'));
     }
 
 
     public function barcodeTest(){
 
-        echo DNS1D::getBarcodeHTML("BIT-C006-0581/13", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0295/14", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0616/13", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0656/13", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0219/14", "C128B");
-
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0431/14", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0384/14", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0404/14", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0336/14", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0338/14", "C128B");
-        echo "<br>";
-        echo DNS1D::getBarcodeHTML("BIT-C006-0333/14", "C128B");
-
-
+        $d = new DNS1D();
+        $d->setStorPath(__DIR__."/cache/");
+        echo $d->getBarcodeHTML("9780691147727", "EAN13");
     }
 
     /**
@@ -187,7 +151,7 @@ class UserController extends Controller
                 ->orderBy('name', 'asc')->lists('name', 'id');
 
 
-        return view('backend.admin.users.edit', compact('user', 'userRoles'));
+        return view('backend.admin.lecturer.edit', compact('user', 'userRoles'));
     }
 
     /**
@@ -204,7 +168,7 @@ class UserController extends Controller
         $validator = Validator::make($input, User::$rules);
 
         if ($validator->fails()) {
-            return redirect()->route('users.edit', $id)
+            return redirect()->route('lecturer.edit', $id)
                 ->withErrors($validator);
         } else {
 
@@ -224,7 +188,7 @@ class UserController extends Controller
 
 
 
-            return redirect()->route('admin.users.index')
+            return redirect()->route('admin.lecturer.index')
             ->with('message', 'Successfully created User!');
         }
     }
@@ -239,7 +203,7 @@ class UserController extends Controller
     {
         $image_name = User::where('id', $id)->value('image');
         
-        $img = public_path().'/images/uploads/users/'.$image_name;                        
+        $img = public_path().'/images/uploads/lecturer/'.$image_name;                        
 
         \File::Delete($img);
 
@@ -248,7 +212,7 @@ class UserController extends Controller
         
         // Session::flash('message', 'You have successfull deleted a product');
 
-        return redirect()->route('users.index')
+        return redirect()->route('lecturer.index')
                 ->with('message', 'You have deleted the product successfully');
     }
 }

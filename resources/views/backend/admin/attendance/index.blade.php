@@ -30,7 +30,9 @@
 						<tr>
 							<th>Student Number</th>				
 							<th>Course</th>
-							<th>Status</th>
+							<th>Unit</th>
+							<th>Lecturer</th>
+							<th>Date/Time</th>
 						</tr>
 						</thead>
 						
@@ -48,13 +50,14 @@
 										{!! $attendance->course !!}
 									</td>						
 									<td>
-										@if($attendance->active == 1)
-											Active
-										@else
-											Inactive
-										@endif
+										{!! $attendance->unit !!}
 									</td>
-									
+									<td>
+										{!! $attendance->lecturer !!}
+									</td>
+									<td>
+										{!! $attendance->created_at !!}
+									</td>
 								</tr>
 							@endforeach
                         @endif
@@ -70,6 +73,7 @@
 @stop
 
 @section('js')
+
 	<script src="/backend/js/lib/jquery/jquery.min.js"></script>
 	<script src="/backend/js/lib/tether/tether.min.js"></script>
 	
@@ -77,16 +81,21 @@
 	<script type="text/javascript" src="/backend/js/lib/jqueryui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/backend/js/lib/lobipanel/lobipanel.min.js"></script>
 	<script type="text/javascript" src="/backend/js/lib/match-height/jquery.matchHeight.min.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script src="/backend/js/app.js"></script>
+
+	<script type="text/javascript" src="/backend/js/lib/jqueryui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/backend/js/lib/lobipanel/lobipanel.min.js"></script>
+	<script type="text/javascript" src="/backend/js/lib/match-height/jquery.matchHeight.min.js"></script>
+
+	<script src="/backend/js/lib/bootstrap/bootstrap.min.js"></script>
+	<script src="/backend/js/plugins.js"></script>
+	<script src="/backend/js/lib/datatables-net/datatables.min.js"></script>
 	
 	<script type="text/javascript">
 	    $(document).ready(function() {
 	        $('#example').DataTable( {
-	        	"columnDefs": [
-	                { "type": "numeric-comma", targets: 3 }
-	            ]
 	            dom: 'Bfrtip',
-	            pageLength: 50
 	            buttons: [
 	                {
 	                    extend: 'pdfHtml5',

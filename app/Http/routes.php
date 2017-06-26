@@ -130,6 +130,20 @@ Route::get('/', function () {
 		    Route::post('/single/verify', ['as' => $u. 'single.verify', 'uses' => 'Admin\UserController@singleVerification']);
 		});
 
+		Route::group(['prefix' => 'lecturer'], function()
+		{
+			$u = 'admin.lecturer.';
+			Route::get('/', ['as' => $u. 'index', 'uses' => 'Admin\LecturerController@index']);
+
+			Route::get('create', array('as' => $u. 'create', 'uses' => 'Admin\LecturerController@create'));
+		    Route::post('create', array('as' => $u. 'store', 'uses' => 'Admin\LecturerController@store'));
+			Route::get('/{userId}', ['as' => $u. 'show', 'uses' => 'Admin\LecturerController@show']);
+			Route::get('/{userId}/edit', ['as' => $u. 'edit', 'uses' => 'Admin\LecturerController@edit']);
+			Route::post('/{userId}/update', array('as' => $u. 'update', 'uses' => 'Admin\LecturerController@update'));
+		    Route::delete('/{userId}/delete', array('as' => $u. 'delete', 'uses' => 'Admin\LecturerController@destroy'));
+		    Route::get('/{userId}/restore', array('as' =>  $u.'restore', 'uses' => 'Admin\LecturerController@getRestore'));
+		});
+
 
 		Route::group(['prefix' => 'course'], function()
 		{
@@ -157,6 +171,8 @@ Route::get('/', function () {
 			Route::post('/{unitId}/update', array('as' => $c. 'update', 'uses' => 'Admin\UnitController@update'));
 		    Route::delete('/{unitId}/delete', array('as' => $c. 'delete', 'uses' => 'Admin\UnitController@destroy'));
 		    Route::get('/{unitId}/restore', array('as' =>  $c.'restore', 'uses' => 'Admin\UnitController@getRestore'));
+
+		    Route::get('/checkin/{unitSlug}', array('as' => $c. 'checkin', 'uses' => 'Admin\UnitController@checkin'));
 		});
 
 		Route::group(['prefix' => 'attendance'], function()

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -15,6 +15,7 @@ use App\Models\Attendance;
 use Validator, Auth;
 use Redirect;
 use Input, DB;
+use Request;
 
 use \Milon\Barcode\DNS1D;
 
@@ -51,12 +52,12 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
 
         $input = Input::all();
 
-        // dd($input);
+        // dd($unit);
         // $studentNumber = "BIT-C006-0295/14";
 
         // $d = new DNS1D();
@@ -78,6 +79,8 @@ class AttendanceController extends Controller
             $course_id = User::where('student_number', $attendance->student_number)->value('course_id');
             $course = Course::where('id', $course_id)->value('name');
             $attendance->course                = $course;
+            $attendance->unit                  = $input['unit'];
+            $attendance->lecturer              = $input['lecturer'];
             $attendance->student_id            = $studentId;
             $attendance->status                = "CUSTOM";
             $attendance->active                = 1;

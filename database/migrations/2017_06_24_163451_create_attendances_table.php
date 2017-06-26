@@ -18,6 +18,8 @@ class CreateAttendancesTable extends Migration
             $table->string('student_number');
             $table->string('student_id');
             $table->string('course');
+            $table->string('unit');
+            $table->string('lecturer');
             $table->boolean('active')->default(1);
             $table->string('status');
             $table->timestamps();

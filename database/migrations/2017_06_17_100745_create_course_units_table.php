@@ -16,6 +16,7 @@ class CreateCourseUnitsTable extends Migration
         Schema::create('course_units', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->integer('course_id')->unsigned()->index();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->boolean('active')->default(1);

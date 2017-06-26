@@ -13,7 +13,9 @@
 	                    <div class="col-sm-6">
 	                        <article class="statistic-box red">
 	                            <div>
-                                <div class="number">3</div>
+                                <div class="number">
+                                	{!! $studentCount !!}
+                                </div>
 	                                <div class="caption"><div>Students</div></div>
 	                                <!-- <div class="percent">
 	                                    <div class="arrow up"></div>
@@ -25,7 +27,9 @@
 	                    <div class="col-sm-6">
 	                        <article class="statistic-box purple">
 	                            <div>
-	                                <div class="number">2</div>
+	                                <div class="number">
+	                                	{!! $courseCount !!}
+	                                </div>
 	                                <div class="caption"><div>Courses</div></div>
 	                            </div>
 	                        </article>

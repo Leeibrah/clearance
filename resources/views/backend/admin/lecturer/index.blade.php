@@ -11,49 +11,62 @@
 		<!--start container-fluid-->
 		<div class="container-fluid">
 
+			@if(Session::has('message'))
+			    <div class="alert alert-success _black">
+			        <strong>Success!</strong><h3>{{ Session::get('message') }}</h3>
+			    </div>
+			@endif
+
+			@include('includes.errors')
+
+			<div class="tbl-cell tbl-cell-action button pull-right">
+				<a href="{!! route('admin.lecturer.create') !!}">
+					<button type="button" class="btn btn-rounded btn-block">Create</button>
+				</a>
+			</div>
 			<header class="section-header">
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h2>Attendances for {!! $user->first_name !!} {!! $user->last_name !!} - ({!! $user->student_number !!})</h2>
-							<div class="subtitle">All the Attendances Information.</div>
+							<h4>Lecturers</h4>
+							<div class="subtitle">All the Lecturers Information.</div>
 						</div>
-		
 					</div>
 				</div>
 			</header>
+			
 
 			<section class="card">
 				<div class="card-block">
 					<table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 						<tr>
-							<th>Course</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Phone</th>
 							<th>Unit</th>
-							<th>Lecturer</th>
-							<th>Day</th>
+							<th>Joined</th>
+							<th>Edit</th>
 						</tr>
 						</thead>
 						
 						<tbody>
 
-						@if($attendances->count())
-                            @foreach($attendances as $attendance)
+						@if($lecturers->count())
+                            @foreach($lecturers as $lecturer)
 								<tr>
-									<td>
-										{!! $attendance->course !!}
-									</td>						
-									<td>
-										{!! $attendance->unit !!}
-									</td>
-									<td>
-										{!! $attendance->lecturer !!}
-									</td>
-									<td>{!! $attendance->created_at !!}</td>
-									
+									<td>{!! $lecturer->first_name !!}</td>
+									<td>{!! $lecturer->last_name !!}</td>
+									<td>{!! $lecturer->email !!}</td>
+									<td>{!! $lecturer->phone !!}</td>
+									<td>{!! DB::table('course_units')->where('id', $lecturer->course_id)->value('name'); !!}</td>
+									<td>{!! $lecturer->created_at !!}</td>
+									<td><a href="{!! route('admin.lecturer.edit', $lecturer->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
 								</tr>
 							@endforeach
                         @endif
+              
 						</tbody>
 					</table>
 				</div>
