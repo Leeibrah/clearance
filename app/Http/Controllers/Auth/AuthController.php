@@ -309,7 +309,7 @@ class AuthController extends Controller
         $user->save();
 
         //Assign Role
-        $role = Role::whereName('Admin')->first();
+        $role = Role::whereName('admin')->first();
         $user->assignRole($role);
 
         dd('Done');

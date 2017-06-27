@@ -35,12 +35,12 @@
                 <span class="lbl">Units</span>
             </a>
         </li>
-        <li class="magenta">
+        <!-- <li class="magenta">
             <a href="{!! route('admin.attendance.create') !!}">
                 <i class="font-icon glyphicon glyphicon-send"></i>
                 <span class="lbl">Scan</span>
             </a>
-        </li>
+        </li> -->
         <li class="magenta">
             <a href="{!! route('admin.attendance.index') !!}">
                 <i class="font-icon glyphicon glyphicon-send"></i>
