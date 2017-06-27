@@ -16,7 +16,7 @@
                                 <div class="number">
                                 	{!! $studentCount !!}
                                 </div>
-	                                <div class="caption"><div>Students</div></div>
+	                                <div class="caption"><div>Student(s)</div></div>
 	                                <!-- <div class="percent">
 	                                    <div class="arrow up"></div>
 	                                    <p>15%</p>
@@ -30,23 +30,23 @@
 	                                <div class="number">
 	                                	{!! $courseCount !!}
 	                                </div>
-	                                <div class="caption"><div>Courses</div></div>
+	                                <div class="caption"><div>Course(s)</div></div>
 	                            </div>
 	                        </article>
 	                    </div><!--.col-->
 	                    <div class="col-sm-6">
 	                        <article class="statistic-box yellow">
 	                            <div>
-	                                <div class="number">2</div>
-	                                <div class="caption"><div>Units</div></div>
+	                                <div class="number">{!! $unitCount !!}</div>
+	                                <div class="caption"><div>Unit(s)</div></div>
 	                            </div>
 	                        </article>
 	                    </div><!--.col-->
 	                    <div class="col-sm-6">
 	                        <article class="statistic-box green">
 	                            <div>
-	                                <div class="number">2</div>
-	                                <div class="caption"><div>Attendance</div></div>
+	                                <div class="number">{!! $attendanceCount !!}</div>
+	                                <div class="caption"><div>Attendance(s)</div></div>
 	                            </div>
 	                        </article>
 	                    </div><!--.col-->

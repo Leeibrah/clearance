@@ -51,7 +51,7 @@
             {!! Form::label('phone', 'Phone:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::number('phone', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Phone', 'required')) !!}            
+                    {!! Form::text('phone', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Phone', 'required')) !!}            
                 </p>
             </div>
         </div>
@@ -69,7 +69,7 @@
             {!! Form::label('valid_from', 'Valid From:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('valid_from', null, array('class'=>'form-control', 'placeholder'=>'ie. 06/2015', 'required')) !!}            
+                    {!! Form::text('valid_from', null, array('class'=>'form-control', 'placeholder'=>'ie. 2015', 'required')) !!}            
                 </p>
             </div>
         </div>
@@ -78,24 +78,19 @@
             {!! Form::label('valid_to', 'Valid To:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('valid_to', null, array('class'=>'form-control', 'placeholder'=>'ie. 06/2019', 'required')) !!}            
+                    {!! Form::text('valid_to', null, array('class'=>'form-control', 'placeholder'=>'ie. 2019', 'required')) !!}            
                 </p>
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('course_id', 'Role:', array('class' => 'col-sm-2 form-control-label')) !!}
+            {!! Form::label('course_id', 'Course:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 {!! Form::select('course_id', [null  => 'Select Course'] + $courses, null, ['class' => 'form-control', 'required']) !!}
             </div>
         </div>
 
-        <div class="form-group row">
-            {!! Form::label('role', 'Role:', array('class' => 'col-sm-2 form-control-label')) !!}
-            <div class="col-sm-10">
-                {!! Form::select('role', [null  => 'Select Role'] + $userRoles, null, ['class' => 'form-control', 'required']) !!}
-            </div>
-        </div>
+        
 
     </div><!--.box-typical-->
 

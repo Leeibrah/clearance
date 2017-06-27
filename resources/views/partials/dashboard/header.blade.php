@@ -23,9 +23,9 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
                             @if(auth()->check())
                                 @if(Auth::User()->isAdmin())
-                                    <a class="dropdown-item" href="{!! route('admin.edit', Auth::user()->id) !!}">
+                                    <a class="dropdown-item" href="#">
                                         <span class="font-icon glyphicon glyphicon-user"></span>
-                                        Profile
+                                        Settings
                                     </a>
                                 @elseif(Auth::User()->isCompany())
                                     <a class="dropdown-item" href="{!! route('company.edit', Auth::user()->id) !!}">
@@ -44,16 +44,12 @@
                                 </a>
                             
                                 @elseif(Auth::User()->isUser())
-                                    <a class="dropdown-item" href="{!! route('user.edit', Auth::user()->id) !!}">
+                                    <a class="dropdown-item" href="#">
                                         <span class="font-icon glyphicon glyphicon-user"></span>
                                         Profile
                                     </a>
                                 @endif
                             @endif
-                            <a class="dropdown-item" href="#">
-                                <span class="font-icon glyphicon glyphicon-cog"></span>
-                                Settings
-                            </a>
                  
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout">

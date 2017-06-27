@@ -27,7 +27,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::whereHas('roles', function($q){
+            $q->where('name', 'student');
+        })->get();
 
         return view('backend.admin.users.index', compact('users'));
     }
@@ -114,9 +116,7 @@ class UserController extends Controller
             $user->course_id                = $input['course_id'];
             $user->save();
 
-            $roleName = Role::where('id', $input['role'])->value('name');
-
-            $role = Role::whereName($roleName)->first();
+            $role = Role::whereName("student")->first();
             $user->assignRole($role); 
 
             return redirect()->route('admin.users.index')
@@ -178,16 +178,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $userRoles = \DB::table('roles')
-                ->where('id', '!=', [1])
-                ->where('id', '!=', [3])
-                ->where('id', '!=', [4])
-                ->where('id', '!=', [5])
-                ->where('id', '!=', [7])
-                ->orderBy('name', 'asc')->lists('name', 'id');
+        $view = '';
+        $userRoles = \DB::table('roles')->where('id', '!=', [1])->orderBy('name', 'asc')->lists('name', 'id');
+        $courses = \DB::table('courses')->orderBy('name', 'asc')->lists('name', 'id');
 
 
-        return view('backend.admin.users.edit', compact('user', 'userRoles'));
+        return view('backend.admin.users.edit', compact('user', 'userRoles', 'courses'));
     }
 
     /**

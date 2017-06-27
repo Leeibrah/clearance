@@ -57,39 +57,41 @@ class AttendanceController extends Controller
 
         $input = Input::all();
 
-        // dd($unit);
-        // $studentNumber = "BIT-C006-0295/14";
+        if(User::where('student_number', '=', $input['code'])->exists()) {
 
-        // $d = new DNS1D();
-        // $d->setStorPath(__DIR__."/cache/");
-        // echo $d->getBarcodeHTML("9780691147727", "EAN13");
+            $validator = Validator::make($input, Attendance::$rules);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator);
+            } else {
+
+                $attendance                        = new Attendance;  
+                $attendance->student_number        = $input['code'];
+                $studentId = User::where('student_number', $attendance->student_number)->value('id');
+                $course_id = User::where('student_number', $attendance->student_number)->value('course_id');
+                $course = Course::where('id', $course_id)->value('name');
+                $attendance->course                = $course;
+                $attendance->unit                  = $input['unit'];
+                $attendance->lecturer              = $input['lecturer'];
+                $attendance->student_id            = $studentId;
+                $attendance->status                = "CUSTOM";
+                $attendance->active                = 1;
+                $attendance->save();
 
 
+                return redirect()->route('admin.attendance.index')
+                ->with('message', 'Successfully created attendance!');
+            }            
+        }else{
 
-        $validator = Validator::make($input, attendance::$rules);
-
-        if ($validator->fails()) {
+            $message = "Sorry! No student registered with that Student Number. Check and Try Again.";
             return redirect()->back()
-                ->withErrors($validator);
-        } else {
-
-            $attendance                        = new Attendance;  
-            $attendance->student_number        = $input['code'];
-            $studentId = User::where('student_number', $attendance->student_number)->value('id');
-            $course_id = User::where('student_number', $attendance->student_number)->value('course_id');
-            $course = Course::where('id', $course_id)->value('name');
-            $attendance->course                = $course;
-            $attendance->unit                  = $input['unit'];
-            $attendance->lecturer              = $input['lecturer'];
-            $attendance->student_id            = $studentId;
-            $attendance->status                = "CUSTOM";
-            $attendance->active                = 1;
-            $attendance->save();
-
-
-            return redirect()->route('admin.attendance.index')
-            ->with('message', 'Successfully created attendance!');
+                ->withErrors($message)
+                ->withInput();
         }
+
+        
     }
 
     /**

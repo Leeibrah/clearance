@@ -9,8 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\User as User;
 use App\Models\Course as Course;
-use App\Models\Employee as Employee;
-use App\Models\EmployeeLoan as EmployeeLoan;
+use App\Models\Unit as Unit;
+use App\Models\Attendance as Attendance;
 
 use App\Models\Loan as Loan;
 use App\Models\LoanLimit as LoanLimit;
@@ -31,8 +31,10 @@ class AdminController extends Controller
         })->count();
 
         $courseCount = Course::all()->count();
+        $unitCount = Unit::all()->count();
+        $attendanceCount = Attendance::all()->count();
 
-        return view('backend.admin.dashboard', compact('users', 'studentCount', 'courseCount'));
+        return view('backend.admin.dashboard', compact('users', 'studentCount', 'courseCount', 'attendanceCount', 'unitCount'));
     }
 
     public function finances()
