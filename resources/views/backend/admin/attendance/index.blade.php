@@ -28,12 +28,12 @@
 					<table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 						<tr>
+							<th>Date/Time</th>
 							<th>Student Number</th>				
 							<th>Course</th>
 							<th>Unit</th>
 							<th>Class</th>
 							<th>Lecturer</th>
-							<th>Date/Time</th>
 						</tr>
 						</thead>
 						
@@ -42,6 +42,9 @@
 						@if($attendances->count())
                             @foreach($attendances as $attendance)
 								<tr>
+									<td>
+										{!! $attendance->created_at !!}
+									</td>
 									<td>
 										<a href="{!! route('admin.attendance.show', $attendance->student_id) !!}">
 											{!! $attendance->student_number !!}
@@ -59,9 +62,7 @@
 									<td>
 										{!! $attendance->lecturer !!}
 									</td>
-									<td>
-										{!! $attendance->created_at !!}
-									</td>
+									
 								</tr>
 							@endforeach
                         @endif
