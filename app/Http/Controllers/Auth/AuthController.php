@@ -182,6 +182,9 @@ class AuthController extends Controller
     public function postRegister()
     {
         $input = Input::all();
+
+        dd($input);
+        
         $validator = Validator::make($input, User::$rules, User::$messages);
         if($validator->fails())
         {

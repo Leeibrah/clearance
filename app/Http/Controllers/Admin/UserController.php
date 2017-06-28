@@ -70,8 +70,9 @@ class UserController extends Controller
         $validator = Validator::make($input, User::$rules);
 
         if ($validator->fails()) {
-            return redirect()->route('users.create')
-                ->withErrors($validator);
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         } 
 
         if(User::where('email', '=', $input['email'])->exists()) {

@@ -41,6 +41,7 @@ class UnitController extends Controller
         $view = '';
         $courses = \DB::table('courses')->lists('name', 'id');
         $selectedCourse = \DB::table('course_units')->pluck('course_id');
+        
         return view('backend.admin.unit.create', compact('view', 'courses', 'selectedCourse'));
     }
 
@@ -53,13 +54,14 @@ class UnitController extends Controller
         $selectedCourse = \DB::table('course_units')->pluck('course_id');
         $unitName = $slug;
         $unitID = Unit::where('slug', $unitName)->value('id');
+        $className = Unit::where('slug', $unitName)->value('class');
 
         $firstName = User::where('course_id', $unitID)->value('first_name');
         $lastName = User::where('course_id', $unitID)->value('last_name');
 
         $lecturerName = $firstName." ".$lastName;
 
-        return view('backend.admin.unit.checkin', compact('view', 'courses', 'selectedCourse', 'unitName', 'lecturerName'));
+        return view('backend.admin.unit.checkin', compact('view', 'courses', 'selectedCourse', 'unitName', 'lecturerName', 'className'));
     }
 
     /**

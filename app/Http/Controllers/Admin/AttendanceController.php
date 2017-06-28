@@ -74,6 +74,7 @@ class AttendanceController extends Controller
                 $attendance->course                = $course;
                 $attendance->unit                  = $input['unit'];
                 $attendance->lecturer              = $input['lecturer'];
+                $attendance->class                 = $input['class'];
                 $attendance->student_id            = $studentId;
                 $attendance->status                = "CUSTOM";
                 $attendance->active                = 1;

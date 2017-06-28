@@ -36,6 +36,16 @@
             </div>
         </div>
 
+
+        <div class="form-group row">
+            {!! Form::label('class', 'Class Name:', array('class' => 'col-sm-2 form-control-label')) !!}
+            <div class="col-sm-10">
+                <p class="form-control-static">
+                    {!! Form::text('class', $className, array('class'=>'form-control', 'id'=>'inputcode', 'readonly')) !!}       
+                </p>
+            </div>
+        </div>
+
         <div class="form-group row">
             {!! Form::label('code', 'Code:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
@@ -44,8 +54,6 @@
                 </p>
             </div>
         </div>
-
-
     </div><!--.box-typical-->
 
     <div class="form-group row">

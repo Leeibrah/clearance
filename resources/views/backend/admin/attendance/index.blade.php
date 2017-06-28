@@ -31,6 +31,7 @@
 							<th>Student Number</th>				
 							<th>Course</th>
 							<th>Unit</th>
+							<th>Class</th>
 							<th>Lecturer</th>
 							<th>Date/Time</th>
 						</tr>
@@ -51,6 +52,9 @@
 									</td>						
 									<td>
 										{!! $attendance->unit !!}
+									</td>
+									<td>
+										{!! $attendance->class !!}
 									</td>
 									<td>
 										{!! $attendance->lecturer !!}

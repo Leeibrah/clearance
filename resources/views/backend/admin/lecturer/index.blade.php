@@ -46,6 +46,7 @@
 							<th>Email</th>
 							<th>Phone</th>
 							<th>Unit</th>
+							
 							<th>Joined</th>
 							<!-- <th>Edit</th> -->
 						</tr>
@@ -61,6 +62,7 @@
 									<td>{!! $lecturer->email !!}</td>
 									<td>{!! $lecturer->phone !!}</td>
 									<td>{!! DB::table('course_units')->where('id', $lecturer->course_id)->value('name'); !!}</td>
+
 									<td>{!! $lecturer->created_at !!}</td>
 									<!-- <td><a href="{!! route('admin.lecturer.edit', $lecturer->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td> -->
 								</tr>

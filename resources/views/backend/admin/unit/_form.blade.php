@@ -47,14 +47,14 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <!-- <div class="form-group row">
             {!! Form::label('lecturer', 'Lecturer:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
                     {!! Form::text('lecturer', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Unit Lecturer')) !!}            
                 </p>
             </div>
-        </div>
+        </div> -->
 
     </div><!--.box-typical-->
 
