@@ -6,8 +6,8 @@
     <div class="page-center">
         <div class="page-center-in">
             <a href="{!! route('home') !!}">
-                <div class="sign-avatar" style="text-align:center; margin-bottom:3%; font-size:30px">
-                    SAS
+                <div class="sign-avatar" style="text-align:center; margin-bottom:3%; font-size:30px;">
+                    <img class="hidden-md-down" src="/images/saslogo.png" alt="{!! app_name() !!}" style="width:25%">
                 </div>   
             </a>
             <div class="container-fluid">

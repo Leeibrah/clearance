@@ -9,14 +9,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\SendSMSController;
 
 use App\Models\User; 
-use App\Models\Course;
-use App\Models\Unit;
+use App\Models\Classroom;
 
 use Validator, Auth;
 use Redirect;
 use Input, DB;
 
-class UnitController extends Controller
+class ClassroomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,9 +24,12 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = Unit::all();
+        dd("ge");
+        $classes = Class::all();
 
-        return view('backend.admin.unit.index', compact('units'));
+        // dd($classes);
+
+        return view('backend.admin.class.index', compact('classes'));
     }
 
     /**
@@ -39,27 +41,7 @@ class UnitController extends Controller
     {
         //
         $view = '';
-        $courses = \DB::table('courses')->lists('name', 'id');
-        $selectedCourse = \DB::table('course_units')->pluck('course_id');
-        return view('backend.admin.unit.create', compact('view', 'courses', 'selectedCourse'));
-    }
-
-    public function checkin($slug)
-    {
-        //
-
-        $view = '';
-        $courses = \DB::table('courses')->lists('name', 'id');
-        $selectedCourse = \DB::table('course_units')->pluck('course_id');
-        $unitName = $slug;
-        $unitID = Unit::where('slug', $unitName)->value('id');
-
-        $firstName = User::where('course_id', $unitID)->value('first_name');
-        $lastName = User::where('course_id', $unitID)->value('last_name');
-
-        $lecturerName = $firstName." ".$lastName;
-
-        return view('backend.admin.unit.checkin', compact('view', 'courses', 'selectedCourse', 'unitName', 'lecturerName'));
+        return view('backend.admin.class.create', compact('view'));
     }
 
     /**
@@ -73,27 +55,22 @@ class UnitController extends Controller
 
         $input = Input::all();
 
-        // dd($input);
-
-        $validator = Validator::make($input, Unit::$rules);
+        $validator = Validator::make($input, Class::$rules);
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator);
         } else {
 
-            $unit                        = new Unit;  
-            $unit->name                  = $input['name'];
-            $unit->slug                  = str_slug($unit->name, "-");
-            $unit->course_id             = $input['course'];
-            $unit->class                 = $input['class'];
-            $unit->status                = "CUSTOM";
-            $unit->active                = 1;
-            $unit->save();
+            $class                        = new class;  
+            $class->name                  = $input['name'];
+            $class->status                = "CUSTOM";
+            $class->active                = 1;
+            $class->save();
 
 
-            return redirect()->route('admin.unit.index')
-            ->with('message', 'Successfully created unit!');
+            return redirect()->route('admin.class.index')
+            ->with('message', 'Successfully created class!');
         }
     }
 

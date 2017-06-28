@@ -15,11 +15,11 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h2>Units</h2>
-							<div class="subtitle">All the Units Information.</div>
+							<h2>Classes</h2>
+							<div class="subtitle">All the Classes Information.</div>
 						</div>
 						<div class="tbl-cell tbl-cell-action button">
-							<a href="{!! route('admin.unit.create') !!}">
+							<a href="{!! route('admin.cl.create') !!}">
 								<button type="button" class="btn btn-rounded btn-block">Create</button>
 							</a>
 						</div>
@@ -32,26 +32,30 @@
 					<table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 						<tr>
-							<th>Course</th>
-							<th>Unit</th>							
-							<th>Class</th>
-							<th>Checkin</th>
+							<th>Name</th>
+													
+							<th>Status</th>
+							<!-- <th>View</th> -->
 						</tr>
 						</thead>
 						
 						<tbody>
 
-						@if($units->count())
-                            @foreach($units as $unit)
+						@if($classes->count())
+                            @foreach($classes as $class)
 								<tr>
 									<td>
-										{!! DB::table('courses')->where('id', $unit->course_id)->value('name') !!}
+										{!! $class->name !!}
 									</td>
-									<td>{!! $unit->name !!}</td>
-									<td>{!! $unit->class !!}</td>
+																
 									<td>
-									<a href="{!! route('admin.unit.checkin', $unit->slug) !!}">Enter</a>
+										@if($class->active == 1)
+											Active
+										@else
+											Inactive
+										@endif
 									</td>
+									
 								</tr>
 							@endforeach
                         @endif

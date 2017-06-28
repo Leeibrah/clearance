@@ -12,7 +12,6 @@
             <a href="{!! route('admin.users.index') !!}" class="label-right">
                 <i class="font-icon font-icon-contacts"></i>
                 <span class="lbl">Students</span>
-                <!-- <span class="label label-custom label-pill label-danger">{!! DB::table('users')->count(); !!}</span> -->
             </a>
         </li>
 
@@ -20,9 +19,14 @@
             <a href="{!! route('admin.lecturer.index') !!}" class="label-right">
                 <i class="font-icon font-icon-contacts"></i>
                 <span class="lbl">Lecturer</span>
-                <!-- <span class="label label-custom label-pill label-danger">{!! DB::table('users')->count(); !!}</span> -->
             </a>
         </li>
+        <!-- <li class="magenta">
+            <a href="{!! route('admin.cl.index') !!}">
+                <i class="font-icon glyphicon glyphicon-send"></i>
+                <span class="lbl">Classes</span>
+            </a>
+        </li> -->
         <li class="magenta">
             <a href="{!! route('admin.course.index') !!}">
                 <i class="font-icon glyphicon glyphicon-send"></i>

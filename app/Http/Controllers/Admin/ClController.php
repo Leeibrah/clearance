@@ -9,14 +9,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\SendSMSController;
 
 use App\Models\User; 
-use App\Models\Course;
-use App\Models\Unit;
+use App\Models\Cl;
 
 use Validator, Auth;
 use Redirect;
 use Input, DB;
 
-class UnitController extends Controller
+class ClController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,9 +24,9 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = Unit::all();
+        $classes = Cl::all();
 
-        return view('backend.admin.unit.index', compact('units'));
+        return view('backend.admin.cl.index', compact('classes'));
     }
 
     /**
@@ -39,27 +38,7 @@ class UnitController extends Controller
     {
         //
         $view = '';
-        $courses = \DB::table('courses')->lists('name', 'id');
-        $selectedCourse = \DB::table('course_units')->pluck('course_id');
-        return view('backend.admin.unit.create', compact('view', 'courses', 'selectedCourse'));
-    }
-
-    public function checkin($slug)
-    {
-        //
-
-        $view = '';
-        $courses = \DB::table('courses')->lists('name', 'id');
-        $selectedCourse = \DB::table('course_units')->pluck('course_id');
-        $unitName = $slug;
-        $unitID = Unit::where('slug', $unitName)->value('id');
-
-        $firstName = User::where('course_id', $unitID)->value('first_name');
-        $lastName = User::where('course_id', $unitID)->value('last_name');
-
-        $lecturerName = $firstName." ".$lastName;
-
-        return view('backend.admin.unit.checkin', compact('view', 'courses', 'selectedCourse', 'unitName', 'lecturerName'));
+        return view('backend.admin.cl.create', compact('view'));
     }
 
     /**
@@ -73,27 +52,22 @@ class UnitController extends Controller
 
         $input = Input::all();
 
-        // dd($input);
-
-        $validator = Validator::make($input, Unit::$rules);
+        $validator = Validator::make($input, Cl::$rules);
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator);
         } else {
 
-            $unit                        = new Unit;  
-            $unit->name                  = $input['name'];
-            $unit->slug                  = str_slug($unit->name, "-");
-            $unit->course_id             = $input['course'];
-            $unit->class                 = $input['class'];
-            $unit->status                = "CUSTOM";
-            $unit->active                = 1;
-            $unit->save();
+            $cl                        = new cl;  
+            $cl->name                  = $input['name'];
+            $cl->status                = "CUSTOM";
+            $cl->active                = 1;
+            $cl->save();
 
 
-            return redirect()->route('admin.unit.index')
-            ->with('message', 'Successfully created unit!');
+            return redirect()->route('admin.cl.index')
+            ->with('message', 'Successfully created cl!');
         }
     }
 

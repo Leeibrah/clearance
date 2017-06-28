@@ -145,6 +145,20 @@ Route::get('/', function () {
 		});
 
 
+		Route::group(['prefix' => 'cl'], function()
+		{
+			$c = 'admin.cl.';
+			Route::get('/', ['as' => $c. 'index', 'uses' => 'Admin\ClController@index']);
+			Route::get('create', array('as' => $c. 'create', 'uses' => 'Admin\ClController@create'));
+		    Route::post('create', array('as' => $c. 'store', 'uses' => 'Admin\ClController@store'));
+			Route::get('/{classId}', ['as' => $c. 'show', 'uses' => 'Admin\ClController@show']);
+			Route::get('/{classId}/edit', ['as' => $c. 'edit', 'uses' => 'Admin\ClController@edit']);
+			Route::post('/{classId}/update', array('as' => $c. 'update', 'uses' => 'Admin\ClController@update'));
+		    Route::delete('/{classId}/delete', array('as' => $c. 'delete', 'uses' => 'Admin\ClController@destroy'));
+		    Route::get('/{classId}/restore', array('as' =>  $c.'restore', 'uses' => 'Admin\ClController@getRestore'));
+
+		});
+
 		Route::group(['prefix' => 'course'], function()
 		{
 			$c = 'admin.course.';
