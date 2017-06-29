@@ -42,7 +42,7 @@
             {!! Form::label('email', 'Email:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('email', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Email', 'required')) !!}            
+                    {!! Form::email('email', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Email', 'required')) !!}            
                 </p>
             </div>
         </div>

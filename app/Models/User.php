@@ -39,7 +39,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public static $rules = [
         'first_name'            => 'required',
         'last_name'             => 'required',
-        'phone'                 => 'required||min:10|max:10'       
+        'phone'                 => 'required||min:10|max:10',
+        'email'                 => 'required|email|unique:users'    
     ];
 
     public static $messages = [
