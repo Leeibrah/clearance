@@ -198,7 +198,13 @@ class UserController extends Controller
     {
         $input = array_except(Input::all(), '_method');
 
-        $validator = Validator::make($input, User::$rules);
+        $rules = [
+            'first_name'            => 'required',
+            'last_name'             => 'required',
+            'phone'                 => 'required||min:10|max:10',
+        ];
+
+        $validator = Validator::make($input, $rules);
 
         if ($validator->fails()) {
             return redirect()->route('admin.users.edit', $id)
