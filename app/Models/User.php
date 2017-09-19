@@ -40,7 +40,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'first_name'            => 'required',
         'last_name'             => 'required',
         'phone'                 => 'required||min:10|max:10',
-        'email'                 => 'required|email|unique:users'    
+        'email'                 => 'required|email|unique:users',
+        'password'              => 'min:7|regex:/^[a-zA-Z\d]+$/'
     ];
 
     public static $messages = [
@@ -52,8 +53,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'email.email'                   => 'Email is invalid',
         'phone.required'                => 'Phone is required',
         'password.required'             => 'Password is required',
-        'password.min'                  => 'Password needs to have at least 2 characters',
-        'password.max'                  => 'Password maximum length is 20 characters',
+        'password.min'                  => 'Password needs to have at least 7 characters',
+        'password.max'                  => 'Password maximum length is 20 characters with numbers',
         'g-recaptcha-response.required' => 'Captcha is required'
     ];
 

@@ -64,7 +64,8 @@ class LecturerController extends Controller
         $validator = Validator::make($input, User::$rules);
 
         if ($validator->fails()) {
-            return redirect()->route('lecturer.create')
+            return redirect()->route('admin.lecturer.create')
+                ->withInput()
                 ->withErrors($validator);
         } 
 
@@ -76,8 +77,8 @@ class LecturerController extends Controller
                 ->withInput();
         }
 
-        $phoneNumber = "+254".intval($input['phone']);
-        if(User::where('phone', '=', $phoneNumber)->exists()) {
+        // $phoneNumber = "+254".intval($input['phone']);
+        if(User::where('phone', '=', $input['phone'])->exists()) {
 
             $message = "Sorry! The Phone Number already exist in our Records. Please Login to your account or contact Customer Service.";
             return redirect()->back()
@@ -88,7 +89,7 @@ class LecturerController extends Controller
             $user                           = new User;
             $user->first_name               = $input['first_name'];
             $user->last_name                = $input['last_name'];
-            $user->phone                    = $phoneNumber;
+            $user->phone                    = $input['phone'];
             $user->email                    = $input['email'];
             $user->student_number           = NULL;
 
@@ -97,6 +98,7 @@ class LecturerController extends Controller
             $generatedCode = hash_hmac('sha256', str_random(40), $key);
             $user->activation_code          = $generatedCode;
             $user->course_id                = $input['course_id'];
+            // $user->password                = bcrypt($input['password']);
             $user->save();
 
             
@@ -150,8 +152,9 @@ class LecturerController extends Controller
                 ->where('id', '!=', [7])
                 ->orderBy('name', 'asc')->lists('name', 'id');
 
+        $courseUnits = \DB::table('course_units')->orderBy('name', 'asc')->lists('name', 'id');
 
-        return view('backend.admin.lecturer.edit', compact('user', 'userRoles'));
+        return view('backend.admin.lecturer.edit', compact('user', 'userRoles', 'courseUnits'));
     }
 
     /**
@@ -165,12 +168,18 @@ class LecturerController extends Controller
     {
         $input = array_except(Input::all(), '_method');
 
-        $validator = Validator::make($input, User::$rules);
+        $rules = [
+            'phone' => 'min:10|max:10'
+        ];
+
+        $validator = Validator::make($input, $rules);
 
         if ($validator->fails()) {
-            return redirect()->route('lecturer.edit', $id)
+
+            return redirect()->route('admin.lecturer.edit', $id)
                 ->withErrors($validator);
         } else {
+
 
             $user                           = User::find($id);
             $user->first_name               = Input::get('first_name');

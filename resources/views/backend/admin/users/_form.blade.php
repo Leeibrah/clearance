@@ -51,7 +51,7 @@
             {!! Form::label('phone', 'Phone:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('phone', null, ['class'=>'form-control', 'placeholder'=>'ie. 0725366712', 'maxlength' => 5]) !!}</p>
+                    {!! Form::text('phone', null, ['class'=>'form-control', 'placeholder'=>'ie. 0725366712']) !!}</p>
                 </p>
             </div>
         </div>

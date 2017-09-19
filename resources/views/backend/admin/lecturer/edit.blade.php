@@ -10,8 +10,8 @@
 
     <!--start page-content-->
     <div class="page-content">
-        {!! Form::model($user, ['route' => ['admin.users.update', $user->getRouteKey()], '_method' => 'put', 'enctype' => 'multipart/form-data', 'files' => true]) !!}
-            @include('backend.admin.users._form', ['submitButtonText' => 'Update User'])
+        {!! Form::model($user, ['route' => ['admin.lecturer.update', $user->getRouteKey()], '_method' => 'put', 'enctype' => 'multipart/form-data', 'files' => true]) !!}
+            @include('backend.admin.lecturer._form', ['submitButtonText' => 'Update User'])
         {!! Form::close() !!}
     </div>
     <!--end page-content-->

@@ -91,8 +91,8 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        $phoneNumber = "+254".intval($input['phone']);
-        if(User::where('phone', '=', $phoneNumber)->exists()) {
+        // $phoneNumber = "+254".intval($input['phone']);
+        if(User::where('phone', '=', $input['phone'])->exists()) {
 
             $message = "Sorry! The Phone Number already exist in our Records. Please Login to your account or contact Customer Service.";
             return redirect()->back()
@@ -105,7 +105,7 @@ class UserController extends Controller
             $user                           = new User;
             $user->first_name               = $input['first_name'];
             $user->last_name                = $input['last_name'];
-            $user->phone                    = $phoneNumber;
+            $user->phone                    = $input['phone'];
             $user->email                    = $input['email'];
             $user->student_number           = $input['student_number'];
             $user->valid_from               = $input['valid_from'];
@@ -201,7 +201,7 @@ class UserController extends Controller
         $validator = Validator::make($input, User::$rules);
 
         if ($validator->fails()) {
-            return redirect()->route('users.edit', $id)
+            return redirect()->route('admin.users.edit', $id)
                 ->withErrors($validator);
         } else {
 
