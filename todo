@@ -1,0 +1,27 @@
+
+UNDER ADMIN
+1.Please allow min of 7 character for password and if possible mixing of letter & nums in password.
+Done. Confirm.
+
+
+UNDER LECTURER
+1. Include column for edit under lecturer, for ease of making changes in case a need arises.
+Done. Confirm
+
+2.Telephone max 10 characters
+Done.
+3. Not more than one lecture to be assigned one unit at the same time.
+Done. Confirm. Once a lecturer is created for acertain course_unit that course unit will not be assigned to another lecturer. Check from the creation of lecturers if the course-unit appears on the dropdown.
+
+UNDER STUDENTS
+1. Unable to add telephone numbers, it allows only 5 digits, please put max of 10 characters
+Done. Confirm.
+
+2.Student registration number still accepts wrong number "BIT-COO6-0295/2014"
+This Student number does not a code format to get it so incase a student inputs the wrong number use the edit section to edit it to the right number. Although we can have the number to check for 18 characters during input. This is what we can do to avoid wrong number which are less than or greater than 16 characters. In this format BIT-C006-9295/10.
+
+3. Dose not allow update after editing students details. Error "whoops looks like something went wrong". When you click on update
+Done. Confirm.
+
+UNDER UNIT
+1. System to allow one scan per unit. A student should not be able to repeat scan for same unit once card has been scanned.

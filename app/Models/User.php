@@ -30,7 +30,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * The attributes excluded from the model's JSON form. BIT-C006-0295/14
      *
      * @var array
      */
@@ -41,7 +41,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'last_name'             => 'required',
         'phone'                 => 'required||min:10|max:10',
         'email'                 => 'required|email|unique:users',
-        'password'              => 'min:7|regex:/^[a-zA-Z\d]+$/'
+        'password'              => 'min:7|regex:/^[a-zA-Z\d]+$/',
+        'student_number'        => 'min:16|max:16'
     ];
 
     public static $messages = [

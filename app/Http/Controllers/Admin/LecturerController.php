@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User as User;
 use App\Models\Role as Role;
 
+use App\Models\LecturerUnit as LecturerUnit;
+
 use App\Models\Blacklist as Blacklist;
 use App\Models\CrbIdentityVerification as CrbIdentityVerification;
 
@@ -15,6 +17,7 @@ use Validator, Session;
 
 use Input, Redirect;
 use Request;
+use DB;
 
 use \Milon\Barcode\DNS1D;
 
@@ -44,7 +47,12 @@ class LecturerController extends Controller
     {
         $view = '';
         $userRoles = \DB::table('roles')->where('id', '!=', [1])->orderBy('name', 'asc')->lists('name', 'id');
-        $courseUnits = \DB::table('course_units')->orderBy('name', 'asc')->lists('name', 'id');
+
+        $ids = LecturerUnit::all()->pluck('course_unit_id')->toArray();
+
+        $courseUnits = \DB::table('course_units')
+                        ->whereNotIn('id',  $ids)
+                        ->orderBy('name', 'asc')->lists('name', 'id');
 
         return view('backend.admin.lecturer.create', compact('view', 'userRoles', 'courseUnits'));
     }
@@ -104,7 +112,12 @@ class LecturerController extends Controller
             
 
             $role = Role::whereName("lecturer")->first();
-            $user->assignRole($role); 
+            $user->assignRole($role);
+
+            $lecturerUnit = new LecturerUnit;
+            $lecturerUnit->user_id = $user->id;
+            $lecturerUnit->course_unit_id = $user->course_id;
+            $lecturerUnit->save();
 
             return redirect()->route('admin.lecturer.index')
             ->with('message', 'Successfully created Lecturer!');
