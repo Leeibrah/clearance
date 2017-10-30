@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>
         @section('title')
-            {{ app_name() }} :: Your Financial Partner
+            {{ app_name() }} :: Attendance System
         @show    
     </title>
     <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.css">

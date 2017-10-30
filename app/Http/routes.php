@@ -122,7 +122,7 @@ Route::get('/', function () {
 			Route::get('/{userId}', ['as' => $u. 'show', 'uses' => 'Admin\UserController@show']);
 			Route::get('/{userId}/edit', ['as' => $u. 'edit', 'uses' => 'Admin\UserController@edit']);
 			Route::post('/{userId}/update', array('as' => $u. 'update', 'uses' => 'Admin\UserController@update'));
-		    Route::delete('/{userId}/delete', array('as' => $u. 'delete', 'uses' => 'Admin\UserController@destroy'));
+		    Route::get('/{userId}/delete', array('as' => $u. 'delete', 'uses' => 'Admin\UserController@destroy'));
 		    Route::get('/{userId}/restore', array('as' =>  $u.'restore', 'uses' => 'Admin\UserController@getRestore'));
 
 		    Route::get('verify/all', ['as' => $u. 'verify.all', 'uses' => 'Admin\UserController@verifyAll']);

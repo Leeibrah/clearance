@@ -50,6 +50,7 @@
 							<th>valid To</th>
 							<th>Joined</th>
 							<th>Edit</th>
+							<th>Dlt</th>
 						</tr>
 						</thead>
 						
@@ -67,6 +68,7 @@
 									<td>{!! $user->valid_to !!}</td>
 									<td>{!! $user->created_at !!}</td>
 									<td><a href="{!! route('admin.users.edit', $user->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+									<td><a href="{!! route('admin.users.delete', $user->id) !!}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 								</tr>
 							@endforeach
                         @endif

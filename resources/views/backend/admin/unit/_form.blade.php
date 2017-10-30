@@ -39,10 +39,10 @@
         </div>
 
         <div class="form-group row">
-            {!! Form::label('class', 'Class:', array('class' => 'col-sm-2 form-control-label')) !!}
+            {!! Form::label('class', 'Venue:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('class', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Unit Class')) !!}            
+                    {!! Form::text('class', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Unit Venue')) !!}            
                 </p>
             </div>
         </div>

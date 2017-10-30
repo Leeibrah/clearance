@@ -12,7 +12,7 @@
             @section('title') 
                {{ app_name() }} 
             @show
-            :: Your Financial Partner
+            :: Attendance System
         </title>
         <meta name="description" content="">
         <meta name="author" content="">

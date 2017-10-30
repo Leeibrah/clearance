@@ -4,7 +4,7 @@
         <li class="grey with-sub">
             <a href="{!! route('admin.dashboard') !!}">
                 <i class="font-icon font-icon-dashboard"></i>
-                <span class="lbl">Admin Dashboard</span>
+                <span class="lbl">ADMIN/HOD Dashboard</span>
             </a>
         </li>
         

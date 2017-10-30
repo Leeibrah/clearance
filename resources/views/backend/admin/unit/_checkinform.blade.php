@@ -47,10 +47,10 @@
         </div>
 
         <div class="form-group row">
-            {!! Form::label('code', 'Code:', array('class' => 'col-sm-2 form-control-label')) !!}
+            {!! Form::label('code', 'Scanner:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('code', null, array('class'=>'form-control', 'id'=>'inputcode', 'placeholder'=>'Enter Attendance Checkin code')) !!}            
+                    {!! Form::text('code', null, array('class'=>'form-control', 'id'=>'inputcode', 'placeholder'=>'Enter Attendance Checkin Scanner Code')) !!}            
                 </p>
             </div>
         </div>

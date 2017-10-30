@@ -50,6 +50,8 @@ class LecturerController extends Controller
 
         $ids = LecturerUnit::all()->pluck('course_unit_id')->toArray();
 
+        // dd($userRoles);
+
         $courseUnits = \DB::table('course_units')
                         ->whereNotIn('id',  $ids)
                         ->orderBy('name', 'asc')->lists('name', 'id');

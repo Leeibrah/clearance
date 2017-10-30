@@ -240,18 +240,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $image_name = User::where('id', $id)->value('image');
-        
-        $img = public_path().'/images/uploads/users/'.$image_name;                        
-
-        \File::Delete($img);
 
         $User = User::findOrFail($id);
         $User->delete();
         
         // Session::flash('message', 'You have successfull deleted a product');
 
-        return redirect()->route('users.index')
-                ->with('message', 'You have deleted the product successfully');
+        return redirect()->route('admin.users.index')
+                ->with('message', 'You have deleted the user successfully');
     }
 }

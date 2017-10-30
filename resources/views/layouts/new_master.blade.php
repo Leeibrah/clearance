@@ -9,7 +9,7 @@
 	<meta name="author" content="solutionportal">
 	<!-- <base href="/"> -->
 
-	<title>Stawika Capital - Admin Dashboard</title>
+	<title>School Attendance System - ADMIN/HOD Dashboard</title>
 	
 	<!-- Icons -->
 	<link rel="stylesheet" href="/fonts/ionicons/css/ionicons.min.css">

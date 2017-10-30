@@ -34,7 +34,7 @@
 						<tr>
 							<th>Course</th>
 							<th>Unit</th>							
-							<th>Class</th>
+							<th>Venue</th>
 							<th>Checkin</th>
 						</tr>
 						</thead>
