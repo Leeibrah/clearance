@@ -33,9 +33,8 @@
 						<thead>
 						<tr>
 							<th>Name</th>
-													
 							<th>Status</th>
-							<!-- <th>View</th> -->
+							<th>Edit Course</th>
 						</tr>
 						</thead>
 						
@@ -55,7 +54,14 @@
 											Inactive
 										@endif
 									</td>
-									
+									<td>
+										@if($course->active == 1)
+											<a href="{!! route('admin.course.deactivate', $course->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"> Deactivate Course</i></a>
+										@else
+											<a href="{!! route('admin.course.activate', $course->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"> Activate Course</i></a>
+										@endif
+										
+									</td>
 								</tr>
 							@endforeach
                         @endif

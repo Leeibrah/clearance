@@ -93,6 +93,28 @@ class CourseController extends Controller
         //
     }
 
+    public function activate($id)
+    {
+        //
+        $course                 = Course::find($id);
+        $course->active         = 1;
+        $course->save();
+
+        return redirect()->route('admin.course.index')
+        ->with('message', 'Successfully Updated Course!');
+    }
+
+    public function deactivate($id)
+    {
+        //
+        $course                 = Course::find($id);
+        $course->active         = 0;
+        $course->save();
+
+        return redirect()->route('admin.course.index')
+        ->with('message', 'Successfully Updated Course!');
+    }
+
     /**
      * Update the specified resource in storage.
      *

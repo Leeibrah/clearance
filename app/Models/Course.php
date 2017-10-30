@@ -26,9 +26,12 @@ class Course extends Model
 
     public static $rules = [
         
-        'name' => 'required',
+        'name' => 'required|unique:courses',
     ];
 
+    public static $messages = [
+        'name'           => 'The course is already available',
+    ];
 
     public function course_id(){
 

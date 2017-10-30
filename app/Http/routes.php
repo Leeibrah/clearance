@@ -167,6 +167,8 @@ Route::get('/', function () {
 		    Route::post('create', array('as' => $c. 'store', 'uses' => 'Admin\CourseController@store'));
 			Route::get('/{courseId}', ['as' => $c. 'show', 'uses' => 'Admin\CourseController@show']);
 			Route::get('/{courseId}/edit', ['as' => $c. 'edit', 'uses' => 'Admin\CourseController@edit']);
+			Route::get('/{courseId}/activate', ['as' => $c. 'activate', 'uses' => 'Admin\CourseController@activate']);
+			Route::get('/{courseId}/deactivate', ['as' => $c. 'deactivate', 'uses' => 'Admin\CourseController@deactivate']);
 			Route::post('/{courseId}/update', array('as' => $c. 'update', 'uses' => 'Admin\CourseController@update'));
 		    Route::delete('/{courseId}/delete', array('as' => $c. 'delete', 'uses' => 'Admin\CourseController@destroy'));
 		    Route::get('/{courseId}/restore', array('as' =>  $c.'restore', 'uses' => 'Admin\CourseController@getRestore'));
