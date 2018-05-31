@@ -5,7 +5,7 @@
             <!-- <div class="hidden-md-down">
                 ATTENDANCE SYSTEM
             </div> -->
-            <img class="hidden-md-down" src="/images/saslogo.png" alt="{!! app_name() !!}">
+            <img class="hidden-md-down" src="/images/clearance-logo.png" alt="{!! app_name() !!}">
         </a>
         <button class="hamburger hamburger--htla">
             <span>toggle menu</span>

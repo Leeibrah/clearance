@@ -42,7 +42,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'phone'                 => 'required||min:10|max:10',
         'email'                 => 'required|email|unique:users',
         'password'              => 'min:7|regex:/^[a-zA-Z\d]+$/',
-        'student_number'        => 'min:16|max:16'
+        'registration_number'   => 'min:16|max:16'
     ];
 
     public static $messages = [
@@ -56,59 +56,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'password.required'             => 'Password is required',
         'password.min'                  => 'Password needs to have at least 7 characters',
         'password.max'                  => 'Password maximum length is 20 characters with numbers',
-        'g-recaptcha-response.required' => 'Captcha is required'
     ];
 
-    public function roles()
-    {
-        return $this->belongsToMany('App\Models\Role')->withTimestamps();
-    }
-
-
-    public function hasRole($name)
-    {
-        foreach($this->roles as $role)
-        {
-            if($role->name == $name) return true;
-        }
-
-        return false;
-    }
+  
 
     public function employee(){
 
         return $this->belongsTo('App\Models\Employee', 'user_id');
-    }
-
-
-    public function assignRole($role)
-    {
-        return $this->roles()->attach($role);
-        // return $this->roles()->sync($role, $detaching = true);
-    }
-
-    public function is_admin(){
-        return $this->roles()->where('role_id', 1)->first();
-    }
-    
-    public function isAdmin(){
-        return $this->roles()->where('role_id', 1)->first();
-    }
-
-    public function isCompany(){
-        return $this->roles()->where('role_id', 2)->first();
-    }        
-
-    public function isUser(){
-        return $this->roles()->where('role_id', 3)->first();
-    }  
-
-    public function isEmployee(){
-        return $this->roles()->where('role_id', 4)->first();
-    }
-
-    public function isModerator(){
-        return $this->roles()->where('role_id', 5)->first();
     }
 
     public function getIsAdminAttribute()

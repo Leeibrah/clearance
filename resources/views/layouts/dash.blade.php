@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>
         @section('title')
-            {{ app_name() }} :: Attendance System
+            {{ app_name() }} :: Clearance System
         @show        
     </title>
     <link href="/css/backend/style.css" rel="stylesheet">
@@ -52,19 +52,7 @@
 
     <!--start side-menu-->
     @if(Auth::check())
-        @if(Auth::User()->isAdmin())
             @include('partials.dashboard.admin.sidebar')
-            
-        @elseif(Auth::User()->isCompany())
-            @include('partials.dashboard.company.sidebar')
-
-        @elseif(Auth::User()->isEmployee())
-            @include('partials.dashboard.employee.sidebar')
-
-        @else(Auth::User()->isUser())
-            @include('partials.dashboard.user.sidebar')
-
-        @endif
     @endif
     <!--end side-menu-->
 

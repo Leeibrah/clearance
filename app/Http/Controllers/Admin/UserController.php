@@ -6,7 +6,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\User as User;
-use App\Models\Role as Role;
 
 use App\Models\Blacklist as Blacklist;
 use App\Models\CrbIdentityVerification as CrbIdentityVerification;
@@ -27,9 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereHas('roles', function($q){
-            $q->where('name', 'student');
-        })->get();
+        $users = User::where('is_admin', 0)->get();
 
         return view('backend.admin.users.index', compact('users'));
     }

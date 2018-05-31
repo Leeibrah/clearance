@@ -8,13 +8,13 @@
 	    <div class="container-fluid">
 	        <div class="row">
 	      
-	            <div class="col-xl-6">
+	            <div class="col-xl-12">
 	                <div class="row">
-	                    <div class="col-sm-6">
+	                    <div class="col-sm-4">
 	                        <article class="statistic-box red">
 	                            <div>
                                 <div class="number">
-                                	{!! $studentCount !!}
+                                	{!! $studentsCount !!}
                                 </div>
 	                                <div class="caption"><div>Student(s)</div></div>
 	                                <!-- <div class="percent">
@@ -24,32 +24,27 @@
 	                            </div>
 	                        </article>
 	                    </div><!--.col-->
-	                    <div class="col-sm-6">
+	                    <div class="col-sm-4">
+	                        <article class="statistic-box green">
+	                            <div>
+	                                <div class="number">
+	                                	{!! $departmentsCount !!}
+	                                </div>
+	                                <div class="caption"><div>Department(s)</div></div>
+	                            </div>
+	                        </article>
+	                    </div><!--.col-->
+	                    <div class="col-sm-4">
 	                        <article class="statistic-box purple">
 	                            <div>
 	                                <div class="number">
-	                                	{!! $courseCount !!}
+	                                	{!! $departmentsCount !!}
 	                                </div>
-	                                <div class="caption"><div>Course(s)</div></div>
+	                                <div class="caption"><div>Clerance(s)</div></div>
 	                            </div>
 	                        </article>
 	                    </div><!--.col-->
-	                    <div class="col-sm-6">
-	                        <article class="statistic-box yellow">
-	                            <div>
-	                                <div class="number">{!! $unitCount !!}</div>
-	                                <div class="caption"><div>Unit(s)</div></div>
-	                            </div>
-	                        </article>
-	                    </div><!--.col-->
-	                    <div class="col-sm-6">
-	                        <article class="statistic-box green">
-	                            <div>
-	                                <div class="number">{!! $attendanceCount !!}</div>
-	                                <div class="caption"><div>Attendance(s)</div></div>
-	                            </div>
-	                        </article>
-	                    </div><!--.col-->
+	                  
 	                </div><!--.row-->
 	            </div><!--.col-->
 	        </div><!--.row-->

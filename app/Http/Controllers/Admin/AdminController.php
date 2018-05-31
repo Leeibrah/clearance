@@ -8,12 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\User as User;
-use App\Models\Course as Course;
-use App\Models\Unit as Unit;
-use App\Models\Attendance as Attendance;
+use App\Models\Department as Department;
 
-use App\Models\Loan as Loan;
-use App\Models\LoanLimit as LoanLimit;
 
 use Auth;
 
@@ -26,15 +22,10 @@ class AdminController extends Controller
 
         $users = User::all();
 
-        $studentCount = User::whereHas('roles', function($q){
-            $q->where('name', 'student');
-        })->count();
+        $studentsCount = User::where('is_admin',0)->count();
+        $departmentsCount = Department::all()->count();
 
-        $courseCount = Course::all()->count();
-        $unitCount = Unit::all()->count();
-        $attendanceCount = Attendance::all()->count();
-
-        return view('backend.admin.dashboard', compact('users', 'studentCount', 'courseCount', 'attendanceCount', 'unitCount'));
+        return view('backend.admin.dashboard', compact('users', 'studentsCount', 'departmentsCount'));
     }
 
     public function finances()

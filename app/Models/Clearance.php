@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Clearance extends Model
 {
     
     /**
@@ -12,7 +12,7 @@ class Unit extends Model
      *
      * @var string
      */
-    protected $table = 'course_units';
+    protected $table = 'clearance';
 
     /**
      * The attributes that are mass assignable.
@@ -20,17 +20,12 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'code'
     ];
 
 
     public static $rules = [
         
-        'name' => 'required',
+        'code' => 'required',
     ];
-
-    public function course_id(){
-
-        return $this->belongsTo('App\Models\Course', 'course_id');
-    }
 }

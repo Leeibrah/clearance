@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User as User;
-use App\Models\Role as Role;
 
 use App\Http\Controllers\Controller;
 // use App\Logic\User\UserRepository;
@@ -127,7 +126,7 @@ class AuthController extends Controller
         ], $remember == 1 ? true : false))
         {
             
-            if( Auth::user()->hasRole('admin'))
+            if( Auth::user()->is_admin==1)
             {                
                 return redirect()->route('admin.dashboard');
             }else{
@@ -216,11 +215,9 @@ class AuthController extends Controller
         
         $user->activation_code  = $activationCode;
         $user->active           = 1;
+        $user->is_admin           = 0;
         $user->save();
 
-        //Assign Role
-        $role = Role::whereName('user')->first();
-        $user->assignRole($role);
 
         $data = [
                 'id'            => $user->id,
@@ -295,25 +292,24 @@ class AuthController extends Controller
 
     public function fakeUser(){
 
-        $user                   = new User;
+        $user                       = new User;
         
-        $user->first_name       = 'Admin';
-        $user->last_name        = 'Admin';
-        $user->email            = 'admin@admin.com';
-        $user->password         = bcrypt('admin');      
-        $user->phone            = '0720 000 000';       
-        $user->student_number             = '0000';    
+        $user->first_name           = 'Admin';
+        $user->last_name            = 'Admin';
+        $user->email                = 'admin@admin.com';
+        $user->password             = bcrypt('admin');      
+        $user->registration_number  = '1000000000001';
+        $user->nationality          = 'Kenyan';  
+        $user->gender               = 'O';    
         
         $key = \Config::get('app.key');
         $activationCode = hash_hmac('sha256', str_random(40), $key);
         
-        $user->activation_code  = $activationCode;
-        $user->active           = 1;
+        $user->activation_code      = $activationCode;
+        $user->active               = 1;
+        $user->is_admin             = 1;
         $user->save();
 
-        //Assign Role
-        $role = Role::whereName('admin')->first();
-        $user->assignRole($role);
 
         dd('Done');
     }

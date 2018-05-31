@@ -15,42 +15,20 @@
             </a>
         </li>
 
-        <li class="red">
+        <li class="green">
             <a href="{!! route('admin.lecturer.index') !!}" class="label-right">
-                <i class="font-icon font-icon-contacts"></i>
-                <span class="lbl">Lecturer</span>
+                <i class="font-icon font-icon-home"></i>
+                <span class="lbl">Departments</span>
             </a>
         </li>
-        <!-- <li class="magenta">
-            <a href="{!! route('admin.cl.index') !!}">
-                <i class="font-icon glyphicon glyphicon-send"></i>
-                <span class="lbl">Classes</span>
-            </a>
-        </li> -->
+
         <li class="magenta">
             <a href="{!! route('admin.course.index') !!}">
                 <i class="font-icon glyphicon glyphicon-send"></i>
-                <span class="lbl">Courses</span>
+                <span class="lbl">Clearances</span>
             </a>
         </li>
-        <li class="magenta">
-            <a href="{!! route('admin.unit.index') !!}">
-                <i class="font-icon glyphicon glyphicon-send"></i>
-                <span class="lbl">Units</span>
-            </a>
-        </li>
-        <!-- <li class="magenta">
-            <a href="{!! route('admin.attendance.create') !!}">
-                <i class="font-icon glyphicon glyphicon-send"></i>
-                <span class="lbl">Scan</span>
-            </a>
-        </li> -->
-        <li class="magenta">
-            <a href="{!! route('admin.attendance.index') !!}">
-                <i class="font-icon glyphicon glyphicon-send"></i>
-                <span class="lbl">All Attendances</span>
-            </a>
-        </li>
+       
     </ul>
 
 </nav>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoleUserTable extends Migration
+class CreateClearanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,16 @@ class CreateRoleUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('clearance', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('item');
+            $table->integer('department_id')->unsigned()->index();
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('no action');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('role_id')->unsigned()->index();
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('no action');
+            $table->string('status');
+            $table->boolean('active')->default(1);
             $table->timestamps();
-
-            $table->unique(['user_id', 'role_id']);
         });
     }
 
@@ -31,6 +32,7 @@ class CreateRoleUserTable extends Migration
      */
     public function down()
     {
-        Schema::drop('role_user');
+        //
+        Schema::drop('clearance');
     }
 }
