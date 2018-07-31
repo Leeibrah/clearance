@@ -57,10 +57,10 @@
         </div>
 
         <div class="form-group row">
-            {!! Form::label('student_number', 'Student Number:', array('class' => 'col-sm-2 form-control-label')) !!}
+            {!! Form::label('registration_number', 'Registration Number:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('student_number', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Student Number', 'required')) !!}  
+                    {!! Form::text('registration_number', null, ['class'=>'form-control', 'placeholder'=>'ie. KR/762367/236']) !!}</p>
                 </p>
             </div>
         </div>
@@ -82,14 +82,6 @@
                 </p>
             </div>
         </div>
-
-        <div class="form-group row">
-            {!! Form::label('course_id', 'Course:', array('class' => 'col-sm-2 form-control-label')) !!}
-            <div class="col-sm-10">
-                {!! Form::select('course_id', [null  => 'Select Course'] + $courses, null, ['class' => 'form-control', 'required']) !!}
-            </div>
-        </div>
-
         
 
     </div><!--.box-typical-->

@@ -37,12 +37,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token', 'activated', 'activation_code'];
 
     public static $rules = [
-        'first_name'            => 'required',
-        'last_name'             => 'required',
-        'phone'                 => 'required||min:10|max:10',
-        'email'                 => 'required|email|unique:users',
-        'password'              => 'min:7|regex:/^[a-zA-Z\d]+$/',
-        'registration_number'   => 'min:16|max:16'
+        'first_name'            => 'required'
+        // 'last_name'             => 'required',
+        // 'phone'                 => 'required||min:10|max:10',
+        // 'email'                 => 'required|email|unique:users',
+        // 'password'              => 'min:7|regex:/^[a-zA-Z\d]+$/',
+        // 'registration_number'   => 'min:16|max:16'
     ];
 
     public static $messages = [
@@ -58,15 +58,49 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'password.max'                  => 'Password maximum length is 20 characters with numbers',
     ];
 
-  
-
-    public function employee(){
-
-        return $this->belongsTo('App\Models\Employee', 'user_id');
-    }
-
     public function getIsAdminAttribute()
     {
         return true;
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role')->withTimestamps();
+    }
+
+    public function hasRole($name)
+    {
+        foreach($this->roles as $role)
+        {
+            if($role->name == $name) return true;
+        }
+
+        return false;
+    }
+
+    public function assignRole($role)
+    {
+        return $this->roles()->attach($role);
+        // return $this->roles()->sync($role, $detaching = true);
+    }
+
+    public function is_admin(){
+        return $this->roles()->where('role_id', 1)->first();
+    }
+    
+    public function isAdmin(){
+        return $this->roles()->where('role_id', 1)->first();
+    }
+
+    public function isDepartment(){
+        return $this->roles()->where('role_id', 2)->first();
+    }
+
+    public function isLecturer(){
+        return $this->roles()->where('role_id', 3)->first();
+    }
+
+    public function isStudent(){
+        return $this->roles()->where('role_id', 4)->first();
     }
 }

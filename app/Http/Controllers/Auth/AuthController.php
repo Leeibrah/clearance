@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User as User;
-
 use App\Http\Controllers\Controller;
-// use App\Logic\User\UserRepository;
-// use App\Logic\Employee\EmployeeRepository;
-// use App\Logic\Company\CompanyRepository;
+
+use App\Models\User as User;
+use App\Models\Role as Role;
+use App\Models\RoleUser as RoleUser;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\MessageBag;
@@ -310,6 +309,10 @@ class AuthController extends Controller
         $user->is_admin             = 1;
         $user->save();
 
+        //Assign Role
+        $role = Role::whereName('admin')->first();
+        $user->assignRole($role);
+        // $user->attach()->role(1)->users(1);
 
         dd('Done');
     }

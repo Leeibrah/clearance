@@ -8,6 +8,12 @@
 
 @section('content')
 
+    @if(Session::has('message'))
+        <div class="">
+            <strong>Error!</strong><h3>{{ Session::get('message') }}</h3>
+        </div>
+    @endif
+
     <!--start page-content-->
     <div class="page-content">
         {!! Form::model(new \App\Models\User, ['route' => ['admin.users.store']]) !!}

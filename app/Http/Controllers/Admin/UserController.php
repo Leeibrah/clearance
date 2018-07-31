@@ -47,9 +47,9 @@ class UserController extends Controller
     {
         $view = '';
         $userRoles = \DB::table('roles')->where('id', '!=', [1])->orderBy('name', 'asc')->lists('name', 'id');
-        $courses = \DB::table('courses')->orderBy('name', 'asc')->lists('name', 'id');
+        // $courses = \DB::table('courses')->orderBy('name', 'asc')->lists('name', 'id');
 
-        return view('backend.admin.users.create', compact('view', 'userRoles', 'courses'));
+        return view('backend.admin.users.create', compact('view', 'userRoles'));
     }
 
     /**
@@ -61,8 +61,7 @@ class UserController extends Controller
     public function store()
     {
         $input = Input::all();
-
-        // dd($input);
+        dd($input);
 
         $validator = Validator::make($input, User::$rules);
 
@@ -80,7 +79,7 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        if(User::where('student_number', '=', $input['student_number'])->exists()) {
+        if(User::where('registration_number', '=', $input['registration_number'])->exists()) {
 
             $message = "Sorry! The Student Number already exist in our Records. Please Login to your Account";
             return redirect()->back()
@@ -98,13 +97,13 @@ class UserController extends Controller
         }else{
             // store
 
-            // dd('sjd');
+            dd('Ready to store');
             $user                           = new User;
             $user->first_name               = $input['first_name'];
             $user->last_name                = $input['last_name'];
             $user->phone                    = $input['phone'];
             $user->email                    = $input['email'];
-            $user->student_number           = $input['student_number'];
+            $user->registration_number           = $input['registration_number'];
             $user->valid_from               = $input['valid_from'];
             $user->valid_to                 = $input['valid_to'];
 
@@ -213,7 +212,7 @@ class UserController extends Controller
             $user->last_name                = Input::get('last_name');
             $user->phone                    = Input::get('phone');
             $user->email                    = Input::get('email');
-            $user->student_number           = Input::get('student_number');
+            $user->registration_number      = Input::get('registration_number');
             $user->valid_from               = Input::get('valid_from');
             $user->valid_to                 = Input::get('valid_to');
             

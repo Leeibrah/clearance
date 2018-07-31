@@ -56,6 +56,17 @@
     @endif
     <!--end side-menu-->
 
+    @if($errors->has())
+       @foreach ($errors->all() as $error)
+          <div>{{ $error }}</div>
+      @endforeach
+    @endif
+
+    @if(Session::has('message'))
+        <div class="alert alert-danger">
+            <strong>Error!</strong><h3>{{ Session::get('message') }}</h3>
+        </div>
+    @endif
 
 
     <!-- start content -->
