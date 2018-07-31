@@ -16,14 +16,21 @@
         </li>
 
         <li class="green">
-            <a href="{!! route('admin.lecturer.index') !!}" class="label-right">
+            <a href="{!! route('admin.department.index') !!}" class="label-right">
                 <i class="font-icon font-icon-home"></i>
                 <span class="lbl">Departments</span>
             </a>
         </li>
 
+        <!-- <li class="green">
+            <a href="{!! route('admin.department.index') !!}" class="label-right">
+                <i class="font-icon font-icon-home"></i>
+                <span class="lbl">Collections</span>
+            </a>
+        </li> -->
+
         <li class="magenta">
-            <a href="{!! route('admin.course.index') !!}">
+            <a href="{!! route('admin.clearance.index') !!}">
                 <i class="font-icon glyphicon glyphicon-send"></i>
                 <span class="lbl">Clearances</span>
             </a>

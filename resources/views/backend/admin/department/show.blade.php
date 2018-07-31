@@ -10,10 +10,10 @@
 					<section class="box-typical proj-page">
 						<section class="proj-page-section proj-page-header">
 							<div class="title">
-								Company Details
+								Department Details
 								<i class="font-icon font-icon-pencil"></i>
 							</div>
-							<div>{!! $company->name !!}</div>
+							<div>{!! $department->name !!}</div>
 							<!-- <div class="project">Project: <a href="#">Lorem Ipsum</a></div> -->
 						</section><!--.proj-page-section-->
 
@@ -24,12 +24,12 @@
 								<div class="tbl-row">
 									<div class="tbl-cell">
 										<b>
-											Company Email Address:
+											Department Email Address:
 										</b>
 									</div>									
 								</div>
 								<div class="">
-									{!! $company->physical_address !!}
+									{!! $department->physical_address !!}
 								</div>
 								<br>
 
@@ -42,10 +42,10 @@
 						
 							<div class="proj-page-txt">
 								<header class="proj-page-subtitle">
-									<h3>Company Status</h3>
+									<h3>department Status</h3>
 								</header>
 								<p>
-									@if($company->status == 1)
+									@if($department->status == 1)
 										Active
 									@else
 										Inactive
@@ -57,9 +57,9 @@
 					</section><!--.proj-page-->
 
 					<section>
-						<a href="{!! route('admin.companies.edit', $company->id) !!}">
+						<a href="{!! route('admin.companies.edit', $department->id) !!}">
 							<button type="button" class="btn btn-grey">
-								Edit Company Account
+								Edit department Account
 							</button>
 						</a>
 					</section>
@@ -78,7 +78,7 @@
 									</div>									
 								</div>
 								<div class="">
-									{!! $company->business_type !!}
+									{!! $department->business_type !!}
 								</div>
 								<br>
 
@@ -90,7 +90,7 @@
 									</div>									
 								</div>
 								<div class="">
-									{!! $company->employees_no !!}
+									{!! $department->employees_no !!}
 								</div>
 								<br>
 
@@ -102,7 +102,7 @@
 									</div>									
 								</div>
 								<div class="">
-									{!! $company->years_operated !!}
+									{!! $department->years_operated !!}
 								</div>
 							</div>
 							<div class="progress-compact-style">

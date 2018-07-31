@@ -6,7 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\User as User;
-
+use App\Models\Role as Role;
 use App\Models\Blacklist as Blacklist;
 use App\Models\CrbIdentityVerification as CrbIdentityVerification;
 
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function store()
     {
         $input = Input::all();
-        dd($input);
+        // dd($input);
 
         $validator = Validator::make($input, User::$rules);
 
@@ -87,8 +87,8 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        // $phoneNumber = "+254".intval($input['phone']);
-        if(User::where('phone', '=', $input['phone'])->exists()) {
+        $phoneNumber = "+254".intval($input['phone']);
+        if(User::where('phone', '=', $phoneNumber)->exists()) {
 
             $message = "Sorry! The Phone Number already exist in our Records. Please Login to your account or contact Customer Service.";
             return redirect()->back()
@@ -97,20 +97,21 @@ class UserController extends Controller
         }else{
             // store
 
-            dd('Ready to store');
             $user                           = new User;
             $user->first_name               = $input['first_name'];
             $user->last_name                = $input['last_name'];
-            $user->phone                    = $input['phone'];
             $user->email                    = $input['email'];
-            $user->registration_number           = $input['registration_number'];
+            $user->phone                    = $phoneNumber;
+            $user->gender                   = $input['gender'];
+            $user->nationality              = $input['nationality'];
+            $user->registration_number      = $input['registration_number'];
             $user->valid_from               = $input['valid_from'];
             $user->valid_to                 = $input['valid_to'];
 
             $key = \Config::get('app.key');
             $generatedCode = hash_hmac('sha256', str_random(40), $key);
             $user->activation_code          = $generatedCode;
-            $user->course_id                = $input['course_id'];
+            // $user->course_id                = $input['course_id'];
             $user->save();
 
             $role = Role::whereName("student")->first();
@@ -177,10 +178,10 @@ class UserController extends Controller
         $user = User::find($id);
         $view = '';
         $userRoles = \DB::table('roles')->where('id', '!=', [1])->orderBy('name', 'asc')->lists('name', 'id');
-        $courses = \DB::table('courses')->orderBy('name', 'asc')->lists('name', 'id');
+        // $courses = \DB::table('courses')->orderBy('name', 'asc')->lists('name', 'id');
 
 
-        return view('backend.admin.users.edit', compact('user', 'userRoles', 'courses'));
+        return view('backend.admin.users.edit', compact('user', 'userRoles'));
     }
 
     /**
@@ -197,7 +198,6 @@ class UserController extends Controller
         $rules = [
             'first_name'            => 'required',
             'last_name'             => 'required',
-            'phone'                 => 'required||min:10|max:10',
         ];
 
         $validator = Validator::make($input, $rules);
@@ -212,6 +212,8 @@ class UserController extends Controller
             $user->last_name                = Input::get('last_name');
             $user->phone                    = Input::get('phone');
             $user->email                    = Input::get('email');
+            $user->gender                   = Input::get('gender');
+            $user->nationality              = Input::get('nationality');
             $user->registration_number      = Input::get('registration_number');
             $user->valid_from               = Input::get('valid_from');
             $user->valid_to                 = Input::get('valid_to');

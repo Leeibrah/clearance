@@ -9,7 +9,7 @@
                 <div class="tbl-cell">
                     <h3>Create Management Student</h3>
                     <ol class="breadcrumb breadcrumb-simple">
-                        <li><a href="#">SAS</a></li>
+                        <li><a href="#">Clearance</a></li>
                         <li><a href="#">Student</a></li>
                         <li class="active">Management</li>
                     </ol>
@@ -51,7 +51,25 @@
             {!! Form::label('phone', 'Phone:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('phone', null, ['class'=>'form-control', 'placeholder'=>'ie. 0725366712']) !!}</p>
+                    {!! Form::text('phone', null, ['class'=>'form-control', 'placeholder'=>'ie. 0725366712']) !!}
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            {!! Form::label('gender', 'Gender:', array('class' => 'col-sm-2 form-control-label')) !!}
+            <div class="col-sm-10">
+                <p class="form-control-static">
+                    {!! Form::select('gender', array('M' => 'Male', 'F' => 'Female')) !!}
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            {!! Form::label('nationality', 'Nationality:', array('class' => 'col-sm-2 form-control-label')) !!}
+            <div class="col-sm-10">
+                <p class="form-control-static">
+                    {!! Form::text('nationality', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Country of Origin', 'required')) !!}    
                 </p>
             </div>
         </div>
@@ -60,7 +78,7 @@
             {!! Form::label('registration_number', 'Registration Number:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('registration_number', null, ['class'=>'form-control', 'placeholder'=>'ie. KR/762367/236']) !!}</p>
+                    {!! Form::text('registration_number', null, ['class'=>'form-control', 'placeholder'=>'ie. KR/762367/236']) !!}
                 </p>
             </div>
         </div>

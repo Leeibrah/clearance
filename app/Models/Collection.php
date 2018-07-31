@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Clearance extends Model
+class Collection extends Model
 {
     
     /**
@@ -12,7 +12,7 @@ class Clearance extends Model
      *
      * @var string
      */
-    protected $table = 'clearance';
+    protected $table = 'collections';
 
     /**
      * The attributes that are mass assignable.
@@ -20,12 +20,12 @@ class Clearance extends Model
      * @var array
      */
     protected $fillable = [
-        'item'
+        'name'
     ];
 
 
     public static $rules = [
         
-        'item' => 'required',
+        'name' => 'required',
     ];
 }

@@ -20,12 +20,12 @@ class Department extends Model
      * @var array
      */
     protected $fillable = [
-        'code'
+        'name'
     ];
 
 
     public static $rules = [
         
-        'code' => 'required',
+        'name' => 'required',
     ];
 }

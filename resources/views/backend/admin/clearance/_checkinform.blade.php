@@ -9,7 +9,7 @@
                 <div class="tbl-cell">
                     <h3>Attendance</h3>
                     <ol class="breadcrumb breadcrumb-simple">
-                        <li><a href="#">SAS</a></li>
+                        <li><a href="#">Clearance</a></li>
                     </ol>
                 </div>
             </div>

@@ -10,8 +10,8 @@
 
     <!--start page-content-->
     <div class="page-content">
-        {!! Form::model(new \App\Models\Unit, ['route' => ['admin.unit.store']]) !!}
-            @include('backend.admin.unit._form', ['submitButtonText' => 'Create Unit'])
+        {!! Form::model(new \App\Models\Department, ['route' => ['admin.department.store']]) !!}
+            @include('backend.admin.department._form', ['submitButtonText' => 'Create Department'])
         {!! Form::close() !!}
     </div>
     <!--end page-content-->

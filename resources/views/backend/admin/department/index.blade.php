@@ -15,11 +15,11 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h2>Courses</h2>
-							<div class="subtitle">All the courses Information.</div>
+							<h2>Departments</h2>
+							<div class="subtitle">All the departments Information.</div>
 						</div>
 						<div class="tbl-cell tbl-cell-action button">
-							<a href="{!! route('admin.course.create') !!}">
+							<a href="{!! route('admin.department.create') !!}">
 								<button type="button" class="btn btn-rounded btn-block">Create</button>
 							</a>
 						</div>
@@ -34,34 +34,34 @@
 						<tr>
 							<th>Name</th>
 							<th>Status</th>
-							<th>Edit Course</th>
+							<!-- <th>Edit department</th> -->
 						</tr>
 						</thead>
 						
 						<tbody>
 
-						@if($courses->count())
-                            @foreach($courses as $course)
+						@if($departments->count())
+                            @foreach($departments as $department)
 								<tr>
 									<td>
-										{!! $course->name !!}
+										{!! $department->name !!}
 									</td>
 																
 									<td>
-										@if($course->active == 1)
+										@if($department->active == 1)
 											Active
 										@else
 											Inactive
 										@endif
 									</td>
-									<td>
-										@if($course->active == 1)
-											<a href="{!! route('admin.course.deactivate', $course->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"> Deactivate Course</i></a>
+									<!-- <td>
+										@if($department->active == 1)
+											<a href="{!! route('admin.department.deactivate', $department->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"> Deactivate department</i></a>
 										@else
-											<a href="{!! route('admin.course.activate', $course->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"> Activate Course</i></a>
+											<a href="{!! route('admin.department.activate', $department->id) !!}"><i class="fa fa-pencil-square-o" aria-hidden="true"> Activate department</i></a>
 										@endif
 										
-									</td>
+									</td> -->
 								</tr>
 							@endforeach
                         @endif

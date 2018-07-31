@@ -9,13 +9,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\SendSMSController;
 
 use App\Models\User; 
-use App\Models\Classroom;
+use App\Models\Department;
 
 use Validator, Auth;
 use Redirect;
 use Input, DB;
 
-class ClassroomController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,12 +24,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        dd("ge");
-        $classes = Class::all();
+        $departments = Department::all();
 
-        // dd($classes);
-
-        return view('backend.admin.class.index', compact('classes'));
+        return view('backend.admin.department.index', compact('departments'));
     }
 
     /**
@@ -41,7 +38,7 @@ class ClassroomController extends Controller
     {
         //
         $view = '';
-        return view('backend.admin.class.create', compact('view'));
+        return view('backend.admin.department.create', compact('view'));
     }
 
     /**
@@ -55,22 +52,23 @@ class ClassroomController extends Controller
 
         $input = Input::all();
 
-        $validator = Validator::make($input, Class::$rules);
+
+        $validator = Validator::make($input, Department::$rules);
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator);
         } else {
 
-            $class                        = new class;  
-            $class->name                  = $input['name'];
-            $class->status                = "CUSTOM";
-            $class->active                = 1;
-            $class->save();
+            $department                        = new Department;  
+            $department->name                  = $input['name'];
+            $department->status                = "OPEN";
+            $department->active                = 1;
+            $department->save();
 
 
-            return redirect()->route('admin.class.index')
-            ->with('message', 'Successfully created class!');
+            return redirect()->route('admin.department.index')
+            ->with('message', 'Successfully created department!');
         }
     }
 
@@ -94,6 +92,28 @@ class ClassroomController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function activate($id)
+    {
+        //
+        $department                 = Department::find($id);
+        $department->active         = 1;
+        $department->save();
+
+        return redirect()->route('admin.department.index')
+        ->with('message', 'Successfully Updated department!');
+    }
+
+    public function deactivate($id)
+    {
+        //
+        $department                 = Department::find($id);
+        $department->active         = 0;
+        $department->save();
+
+        return redirect()->route('admin.department.index')
+        ->with('message', 'Successfully Updated department!');
     }
 
     /**

@@ -7,11 +7,11 @@
         <div class="tbl">
             <div class="tbl-row">
                 <div class="tbl-cell">
-                    <h3>Course</h3>
+                    <h3>Department</h3>
                     <ol class="breadcrumb breadcrumb-simple">
-                        <li><a href="#">SAS</a></li>
-                        <!-- <li><a href="#">Course</a></li> -->
-                        <li class="active">Course</li>
+                        <li><a href="#">Clearance</a></li>
+                        <!-- <li><a href="#">Department</a></li> -->
+                        <li class="active">Department</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             {!! Form::label('name', 'Name:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('name', null, array('class'=>'form-control', 'id'=>'inputName', 'placeholder'=>'Enter Course Name')) !!}            
+                    {!! Form::text('name', null, array('class'=>'form-control', 'id'=>'inputName', 'placeholder'=>'Enter Department Name')) !!}            
                 </p>
             </div>
         </div>

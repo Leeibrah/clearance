@@ -9,7 +9,7 @@
                 <div class="tbl-cell">
                     <h3>Create Management Lecturer</h3>
                     <ol class="breadcrumb breadcrumb-simple">
-                        <li><a href="#">SAS</a></li>
+                        <li><a href="#">Clearance</a></li>
                         <li><a href="#">Lecturer</a></li>
                         <li class="active">Management</li>
                     </ol>

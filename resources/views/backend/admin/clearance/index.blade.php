@@ -15,11 +15,11 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h2>Units</h2>
-							<div class="subtitle">All the Units Information.</div>
+							<h2>Clearances</h2>
+							<div class="subtitle">All the Clearances Information.</div>
 						</div>
 						<div class="tbl-cell tbl-cell-action button">
-							<a href="{!! route('admin.unit.create') !!}">
+							<a href="{!! route('admin.clearance.create') !!}">
 								<button type="button" class="btn btn-rounded btn-block">Create</button>
 							</a>
 						</div>
@@ -32,26 +32,24 @@
 					<table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 						<tr>
-							<th>Course</th>
-							<th>Unit</th>							
-							<th>Venue</th>
-							<th>Checkin</th>
+							<th>Item</th>
+							<th>Department</th>							
+							<th>User</th>
+							<th>Status</th>
 						</tr>
 						</thead>
 						
 						<tbody>
 
-						@if($units->count())
-                            @foreach($units as $unit)
+						@if($clearances->count())
+                            @foreach($clearances as $clearance)
 								<tr>
 									<td>
-										{!! DB::table('courses')->where('id', $unit->course_id)->value('name') !!}
+										{!! $clearance->item !!}
 									</td>
-									<td>{!! $unit->name !!}</td>
-									<td>{!! $unit->class !!}</td>
-									<td>
-									<a href="{!! route('admin.unit.checkin', $unit->slug) !!}">Enter</a>
-									</td>
+									<td>{!! $clearance->department_id !!}</td>
+									<td>{!! $clearance->user_id !!}</td>
+									<td>{!! $clearance->status !!}</td>
 								</tr>
 							@endforeach
                         @endif

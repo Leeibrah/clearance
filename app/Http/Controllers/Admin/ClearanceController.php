@@ -9,13 +9,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\SendSMSController;
 
 use App\Models\User; 
-use App\Models\Cl;
+use App\Models\Clearance;
+use App\Models\Department;
 
 use Validator, Auth;
 use Redirect;
 use Input, DB;
 
-class ClController extends Controller
+class ClearanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,9 +25,9 @@ class ClController extends Controller
      */
     public function index()
     {
-        $classes = Cl::all();
+        $clearances = Clearance::all();
 
-        return view('backend.admin.cl.index', compact('classes'));
+        return view('backend.admin.clearance.index', compact('clearances'));
     }
 
     /**
@@ -38,7 +39,11 @@ class ClController extends Controller
     {
         //
         $view = '';
-        return view('backend.admin.cl.create', compact('view'));
+        // $departments = Department::where('active', '=', 1)->orderBy('name', 'asc')->lists('name', 'id');
+        $departmentList = \DB::table('departments')
+                        ->orderBy('name', 'asc')->lists('name', 'id');
+
+        return view('backend.admin.clearance.create', compact('view', 'departmentList'));
     }
 
     /**
@@ -52,22 +57,35 @@ class ClController extends Controller
 
         $input = Input::all();
 
-        $validator = Validator::make($input, Cl::$rules);
+
+        $validator = Validator::make($input, Clearance::$rules);
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator);
         } else {
 
-            $cl                        = new cl;  
-            $cl->name                  = $input['name'];
-            $cl->status                = "CUSTOM";
-            $cl->active                = 1;
-            $cl->save();
+            if(User::where('registration_number', '=', $input['student_number'])->exists()) {
+                // store
+
+                $col                        = new clearance;  
+                $col->item                  = $input['item'];
+                $col->department_id         = $input['department'];
+                $col->user_id               = User::where('registration_number', '=', $input['student_number'])->value('id');
+                $col->status                = "UNCLEARED";
+                $col->active                = 1;
+                $col->save();
 
 
-            return redirect()->route('admin.cl.index')
-            ->with('message', 'Successfully created cl!');
+                return redirect()->route('admin.clearance.index')
+                ->with('message', 'Successfully created cl!');
+                
+            }else{
+                $message = "Sorry! No Student with that registration Number";
+                return redirect()->back()
+                    ->withErrors($message)
+                    ->withInput();
+            }
         }
     }
 

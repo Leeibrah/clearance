@@ -9,7 +9,7 @@
                 <div class="tbl-cell">
                     <h3>Unit</h3>
                     <ol class="breadcrumb breadcrumb-simple">
-                        <li><a href="#">SAS</a></li>
+                        <li><a href="#">Clearance</a></li>
                         <!-- <li><a href="#">Unit</a></li> -->
                         <li class="active">Unit</li>
                     </ol>
@@ -20,48 +20,41 @@
 
     <div class="box-typical box-typical-padding">                    
         
+        
+
         <div class="form-group row">
-            {!! Form::label('course', 'Course:', array('class' => 'col-sm-2 form-control-label')) !!}
+            {!! Form::label('item', 'Item name:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::select('course', (['0' => 'Select a Course'] + $courses), $selectedCourse, ['class' => 'form-control']) !!}
+                    {!! Form::text('item', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Unit name')) !!}            
                 </p>
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('name', 'Name:', array('class' => 'col-sm-2 form-control-label')) !!}
+            {!! Form::label('department', 'Department:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('name', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Unit name')) !!}            
+                    {!! Form::select('department', [null  => 'Select Department'] + $departmentList, null, ['class' => 'form-control', 'required']) !!}
                 </p>
             </div>
         </div>
 
         <div class="form-group row">
-            {!! Form::label('class', 'Venue:', array('class' => 'col-sm-2 form-control-label')) !!}
+            {!! Form::label('student_number', 'Student Number:', array('class' => 'col-sm-2 form-control-label')) !!}
             <div class="col-sm-10">
                 <p class="form-control-static">
-                    {!! Form::text('class', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Unit Venue')) !!}            
+                    {!! Form::text('student_number', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Student Number')) !!}            
                 </p>
             </div>
         </div>
-
-        <!-- <div class="form-group row">
-            {!! Form::label('lecturer', 'Lecturer:', array('class' => 'col-sm-2 form-control-label')) !!}
-            <div class="col-sm-10">
-                <p class="form-control-static">
-                    {!! Form::text('lecturer', null, array('class'=>'form-control', 'id'=>'inputPassword', 'placeholder'=>'Enter Unit Lecturer')) !!}            
-                </p>
-            </div>
-        </div> -->
 
     </div><!--.box-typical-->
 
     <div class="form-group row">
         <div class="col-sm-6 col-md-5">
             {!! Form::submit($submitButtonText, ['class' => 'btn btn-success full-width btn-large']) !!}
-            or &nbsp; <a href="{!! route('admin.unit.index') !!}" class="soap-popupbox">Cancel</a>
+            or &nbsp; <a href="{!! route('admin.department.index') !!}" class="soap-popupbox">Cancel</a>
         </div>
     </div>
     

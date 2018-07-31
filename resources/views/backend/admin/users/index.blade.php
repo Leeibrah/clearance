@@ -28,8 +28,8 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h4>Users</h4>
-							<div class="subtitle">All the Users Information.</div>
+							<h4>Students</h4>
+							<div class="subtitle">All the Students Information.</div>
 						</div>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 								<tr>
 									<td>{!! $user->first_name !!}</td>
 									<td>{!! $user->last_name !!}</td>
-									<td>{!! $user->student_number !!}</td>									
+									<td>{!! $user->registration_number !!}</td>									
 									<td>{!! $user->email !!}</td>
 									<td>{!! $user->phone !!}</td>
 									<td>{!! $user->valid_from !!}</td>
