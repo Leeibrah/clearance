@@ -28,4 +28,16 @@ class Clearance extends Model
         
         'item' => 'required',
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department');
+    }
+
 }

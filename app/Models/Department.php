@@ -28,4 +28,9 @@ class Department extends Model
         
         'name' => 'required',
     ];
+
+    // public function getNameAttribute()
+    // {
+    //     return "$this->name";
+    // }
 }

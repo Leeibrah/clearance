@@ -140,6 +140,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
 		Route::get('/{userId}', ['as' => $u. 'show', 'uses' => 'Admin\ClearanceController@show']);
 		Route::get('/{userId}/edit', ['as' => $u. 'edit', 'uses' => 'Admin\ClearanceController@edit']);
 		Route::post('/{userId}/update', array('as' => $u. 'update', 'uses' => 'Admin\ClearanceController@update'));
+		Route::get('/{userId}/clear', array('as' => $u. 'clear', 'uses' => 'Admin\ClearanceController@clear'));
 	    Route::delete('/{userId}/delete', array('as' => $u. 'delete', 'uses' => 'Admin\ClearanceController@destroy'));
 	    Route::get('/{userId}/restore', array('as' =>  $u.'restore', 'uses' => 'Admin\ClearanceController@getRestore'));
 	});

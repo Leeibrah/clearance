@@ -63,6 +63,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return true;
     }
 
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "$this->first_name $this->last_name";
+    }
+
+    public function getStudentNumberAttribute()
+    {
+        return "$this->registration_number";
+    }
+
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role')->withTimestamps();

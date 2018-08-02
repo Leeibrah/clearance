@@ -32,10 +32,13 @@
 					<table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
 						<thead>
 						<tr>
+							<th>User</th>
+							<th>Student Number</th>
 							<th>Item</th>
 							<th>Department</th>							
-							<th>User</th>
+							
 							<th>Status</th>
+							<th>Action</th>
 						</tr>
 						</thead>
 						
@@ -44,12 +47,22 @@
 						@if($clearances->count())
                             @foreach($clearances as $clearance)
 								<tr>
+									<td>{!! $clearance->user ? $clearance->user->fullname : "N/A" !!}</td>
+									<td>{!! $clearance->user ? $clearance->user->studentnumber : "N/A" !!}</td>
 									<td>
 										{!! $clearance->item !!}
 									</td>
-									<td>{!! $clearance->department_id !!}</td>
-									<td>{!! $clearance->user_id !!}</td>
+									<td>{!! $clearance->department ? $clearance->department->name : "N/A" !!}</td>
+									
 									<td>{!! $clearance->status !!}</td>
+									<td>
+										@if($clearance->status == 'UNCLEARED')
+										<a href="{!! route('admin.clearance.clear', $clearance->id) !!}">Clear Item</a>	
+										@else
+										<div>Item Already Cleared</div>	
+										@endif
+									</td>
+									
 								</tr>
 							@endforeach
                         @endif

@@ -81,9 +81,9 @@ class ClearanceController extends Controller
                 ->with('message', 'Successfully created cl!');
                 
             }else{
-                $message = "Sorry! No Student with that registration Number";
+                $errors = "Sorry! No Student with that registration Number";
                 return redirect()->back()
-                    ->withErrors($message)
+                    ->withErrors($errors)
                     ->withInput();
             }
         }
@@ -100,6 +100,26 @@ class ClearanceController extends Controller
         //
     }
 
+
+    public function clear($id)
+    {
+        //
+        $update_table = Clearance::where('id', '=', $id)
+                ->update(['status' => 'CLEARED']);
+
+        return redirect()->route('admin.clearance.index')
+                ->with('message', 'Successfully UPDATED Clearance!');
+    }
+
+    public function unclear($id)
+    {
+        //
+        $update_table = Clearance::where('id', '=', $id)
+                ->update(['status' => 'UNCLEARED']);
+
+        return redirect()->route('admin.clearance.index')
+                ->with('message', 'Successfully UPDATED Clearance!');
+    }
     /**
      * Show the form for editing the specified resource.
      *
