@@ -163,18 +163,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
 	Route::group(['prefix' => 'department'], function()
 	{
 		$c = 'admin.department.';
-		Route::get('/', ['as' => $c. 'index', 'uses' => 'Admin\departmentController@index']);
-		Route::get('create', array('as' => $c. 'create', 'uses' => 'Admin\departmentController@create'));
-	    Route::post('create', array('as' => $c. 'store', 'uses' => 'Admin\departmentController@store'));
-		Route::get('/{departmentId}', ['as' => $c. 'show', 'uses' => 'Admin\departmentController@show']);
-		Route::get('/{departmentId}/edit', ['as' => $c. 'edit', 'uses' => 'Admin\departmentController@edit']);
-		Route::get('/{departmentId}/activate', ['as' => $c. 'activate', 'uses' => 'Admin\departmentController@activate']);
-		Route::get('/{departmentId}/deactivate', ['as' => $c. 'deactivate', 'uses' => 'Admin\departmentController@deactivate']);
-		Route::post('/{departmentId}/update', array('as' => $c. 'update', 'uses' => 'Admin\departmentController@update'));
-	    Route::delete('/{departmentId}/delete', array('as' => $c. 'delete', 'uses' => 'Admin\departmentController@destroy'));
-	    Route::get('/{departmentId}/restore', array('as' =>  $c.'restore', 'uses' => 'Admin\departmentController@getRestore'));
+		Route::get('/', ['as' => $c. 'index', 'uses' => 'Admin\DepartmentController@index']);
+		Route::get('create', array('as' => $c. 'create', 'uses' => 'Admin\DepartmentController@create'));
+	    Route::post('create', array('as' => $c. 'store', 'uses' => 'Admin\DepartmentController@store'));
+		Route::get('/{departmentId}', ['as' => $c. 'show', 'uses' => 'Admin\DepartmentController@show']);
+		Route::get('/{departmentId}/edit', ['as' => $c. 'edit', 'uses' => 'Admin\DepartmentController@edit']);
+		Route::get('/{departmentId}/activate', ['as' => $c. 'activate', 'uses' => 'Admin\DepartmentController@activate']);
+		Route::get('/{departmentId}/deactivate', ['as' => $c. 'deactivate', 'uses' => 'Admin\DepartmentController@deactivate']);
+		Route::post('/{departmentId}/update', array('as' => $c. 'update', 'uses' => 'Admin\DepartmentController@update'));
+	    Route::delete('/{departmentId}/delete', array('as' => $c. 'delete', 'uses' => 'Admin\DepartmentController@destroy'));
+	    Route::get('/{departmentId}/restore', array('as' =>  $c.'restore', 'uses' => 'Admin\DepartmentController@getRestore'));
 
-		Route::get('send/limit/users', array('as' => 'send.limit.users', 'uses' => 'Admin\departmentController@sendLoanLimitUsers'));		    
+		Route::get('send/limit/users', array('as' => 'send.limit.users', 'uses' => 'Admin\DepartmentController@sendLoanLimitUsers'));		    
 	});
 
 });

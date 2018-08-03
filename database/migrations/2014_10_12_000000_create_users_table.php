@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->date('dob');
             $table->string('department');
-            $table->integer('year');
-            $table->integer('duration');
+            $table->integer('valid_from');
+            $table->integer('valid_to');
             $table->boolean('status')->default(1);
             $table->boolean('active')->default(1);
             $table->string('activation_code')->nullable();
