@@ -26,7 +26,7 @@
                         <!-- <input type="text" class="form-control" placeholder="E-Mail or Phone"/> -->
                         {!! Form::email('email', null, [
                             'class'                         => 'form-control',
-                            'placeholder'                   => 'Enter Email',
+                            'placeholder'                   => 'Enter your Email',
                             'required',
                             'id'                            => 'exampleInputEmail1',
                             'data-parsley-required-message' => 'Email is required',
@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <div class="checkbox float-left">
                             <input type="checkbox" id="signed-in"/>
-                            <label for="signed-in">Keep me signed in</label>
+                            <label for="signed-in">Keep me logged in</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-rounded">Sign in</button>

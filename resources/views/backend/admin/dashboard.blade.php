@@ -38,9 +38,9 @@
 	                        <article class="statistic-box purple">
 	                            <div>
 	                                <div class="number">
-	                                	{!! $departmentsCount !!}
+	                                	{!! $clearanceCount !!}
 	                                </div>
-	                                <div class="caption"><div>Clerance(s)</div></div>
+	                                <div class="caption"><div>Clearance(s)</div></div>
 	                            </div>
 	                        </article>
 	                    </div><!--.col-->

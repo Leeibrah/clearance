@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\User as User;
 use App\Models\Department as Department;
+use App\Models\Clearance as Clearance;
 
 
 use Auth;
@@ -24,8 +25,9 @@ class AdminController extends Controller
 
         $studentsCount = User::where('is_admin',0)->count();
         $departmentsCount = Department::all()->count();
+        $clearanceCount = Clearance::all()->count();
 
-        return view('backend.admin.dashboard', compact('users', 'studentsCount', 'departmentsCount'));
+        return view('backend.admin.dashboard', compact('users', 'studentsCount', 'departmentsCount', 'clearanceCount'));
     }
 
     public function finances()
